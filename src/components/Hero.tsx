@@ -1,5 +1,5 @@
 import { Linkedin } from "lucide-react";
-import heroPhoto from "@/assets/hero-photo.jpg";
+import heroPhoto from "@/assets/hero-photo.png";
 
 const Hero = () => (
   <section id="hero" className="min-h-screen pt-[100px] pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-12 md:gap-20 bg-background relative overflow-hidden">
