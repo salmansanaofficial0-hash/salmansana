@@ -16,7 +16,7 @@ const Navbar = () => (
       </svg>
     </a>
     <div className="hidden md:flex items-center gap-1">
-      {["About", "Skills", "Education", "Contact"].map(item => (
+      {["About", "Skills", "Education", "Certificates", "Contact"].map(item => (
         <a key={item} href={`#${item.toLowerCase()}`} className="no-underline text-muted text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg transition-all hover:text-foreground hover:bg-card tracking-tight">
           {item}
         </a>
