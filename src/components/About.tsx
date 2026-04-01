@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
 import aboutMain from "@/assets/about-main.jpg";
-import aboutSm1 from "@/assets/about-sm1.jpg";
-import aboutSm2 from "@/assets/about-sm2.jpg";
 
 const tags = [
   { label: "Finance", cls: "text-primary border-primary/20 bg-blue-light" },
