@@ -108,16 +108,18 @@ const Certificates = () => {
         <p className="text-[0.97rem] text-muted leading-relaxed">Professional certifications and academic achievements earned along the way.</p>
       </div>
 
-      {/* Upload toggle */}
-      <div className="flex justify-center mb-8">
-        <button
-          onClick={() => setShowUpload(!showUpload)}
-          className="inline-flex items-center gap-2 bg-ink text-primary-foreground px-6 py-3 rounded-full text-[0.85rem] font-bold tracking-wide transition-all hover:bg-blue-mid hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(37,99,235,0.3)]"
-        >
-          <Plus size={16} />
-          {showUpload ? "Cancel" : "Upload Certificate"}
-        </button>
-      </div>
+      {/* Upload toggle - admin only */}
+      {isAdmin && (
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => setShowUpload(!showUpload)}
+            className="inline-flex items-center gap-2 bg-ink text-primary-foreground px-6 py-3 rounded-full text-[0.85rem] font-bold tracking-wide transition-all hover:bg-blue-mid hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(37,99,235,0.3)]"
+          >
+            <Plus size={16} />
+            {showUpload ? "Cancel" : "Upload Certificate"}
+          </button>
+        </div>
+      )}
 
       {/* Upload form */}
       {showUpload && (
