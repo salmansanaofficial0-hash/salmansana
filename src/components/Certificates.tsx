@@ -174,7 +174,7 @@ const Certificates = () => {
           {certificates.map((cert, i) => (
             <div key={cert.id}
               className="group bg-background border border-border rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)] hover:border-transparent reveal-el opacity-0 translate-y-5"
-              style={{ transitionDelay: `${i * 0.07}s`, transitionDuration: '650ms' }}>
+              style={{ transitionDelay: `${i * 0.07}s`, transitionDuration: '650ms', animationFillMode: 'forwards' }}>
               <div className="relative cursor-pointer" onClick={() => setViewImage(cert.image_url)}>
                 <img src={cert.image_url} alt={cert.title} className="w-full h-48 object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
