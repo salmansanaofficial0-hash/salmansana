@@ -34,7 +34,7 @@ const Hero = () => (
       </div>
     </div>
 
-    <div className="relative z-[2] animate-slide-up order-1 md:order-2" style={{ animationDelay: '0.1s' }}>
+    <div className="relative z-[2] animate-slide-up order-1 md:order-2 flex justify-center" style={{ animationDelay: '0.1s' }}>
       <div className="relative">
         <div className="relative bg-background rounded-[28px] border border-border overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_40px_rgba(0,0,0,0.08),0_40px_80px_rgba(0,0,0,0.06)]">
           <img src={heroPhoto} alt="Salman Sana" className="w-full h-[460px] object-cover object-[center_top] block brightness-[1.04] contrast-[1.06] saturate-[1.1]" />
