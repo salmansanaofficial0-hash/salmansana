@@ -193,10 +193,12 @@ const Certificates = () => {
                     <Calendar size={12} /> {new Date(cert.date_issued).toLocaleDateString("en-US", { year: "numeric", month: "short" })}
                   </div>
                 )}
-                <button onClick={() => handleDelete(cert.id, cert.image_url)}
-                  className="mt-3 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-rose hover:text-destructive transition-colors">
-                  <Trash2 size={12} /> Remove
-                </button>
+                {isAdmin && (
+                  <button onClick={() => handleDelete(cert.id, cert.image_url)}
+                    className="mt-3 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-rose hover:text-destructive transition-colors">
+                    <Trash2 size={12} /> Remove
+                  </button>
+                )}
               </div>
             </div>
           ))}
