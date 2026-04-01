@@ -2,7 +2,7 @@ import { Linkedin } from "lucide-react";
 import heroPhoto from "@/assets/hero-photo.png";
 
 const Hero = () => (
-  <section id="hero" className="min-h-screen pt-[100px] pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-12 md:gap-20 bg-background relative overflow-hidden">
+  <section id="hero" className="min-h-screen pt-[90px] pb-16 md:pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-8 md:gap-20 bg-background relative overflow-hidden">
     <div className="hero-grid-bg absolute inset-0 pointer-events-none" />
     <div className="hero-vignette absolute inset-0 pointer-events-none" />
 
