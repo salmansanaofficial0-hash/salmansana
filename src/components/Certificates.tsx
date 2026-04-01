@@ -46,7 +46,8 @@ const Certificates = () => {
   }, [certificates]);
 
   const fetchCertificates = async () => {
-    const { data } = await supabase.from("certificates").select("*").order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("certificates").select("*").order("created_at", { ascending: false });
+    if (error) console.error("Failed to fetch certificates:", error);
     if (data) setCertificates(data);
   };
 
