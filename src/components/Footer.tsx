@@ -11,7 +11,7 @@ const Footer = () => (
       </svg>
     </div>
     <div className="text-[0.8rem] text-primary-foreground/30">© 2025 Salman Sana · BBA Student · University of Turbat</div>
-    <div className="flex gap-6">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
       {[
         { label: "Home", href: "#hero" },
         { label: "About", href: "#about" },
