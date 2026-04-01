@@ -23,17 +23,9 @@ const About = () => {
   return (
     <section id="about" className="py-28 px-[5%] bg-background" ref={ref}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-        <div className="grid grid-cols-2 gap-2.5 reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]">
-          <div className="row-span-2 rounded-[18px] overflow-hidden bg-card">
-            <img src={aboutMain} alt="Studying" className="w-full h-full min-h-[400px] object-cover object-[top_center] hover:scale-[1.04] transition-transform duration-[450ms]" loading="lazy" />
-          </div>
-          <div className="rounded-[18px] overflow-hidden bg-card relative">
-            <img src={aboutSm1} alt="Presenting" className="w-full h-[190px] object-cover object-[top_center] hover:scale-[1.04] transition-transform duration-[450ms]" loading="lazy" />
-            <span className="absolute bottom-2 left-2 bg-foreground/70 backdrop-blur-sm text-primary-foreground text-[0.7rem] font-semibold px-2.5 py-0.5 rounded-full tracking-wide">Presenting</span>
-          </div>
-          <div className="rounded-[18px] overflow-hidden bg-card relative">
-            <img src={aboutSm2} alt="Working" className="w-full h-[190px] object-cover object-[top_center] hover:scale-[1.04] transition-transform duration-[450ms]" loading="lazy" />
-            <span className="absolute bottom-2 left-2 bg-foreground/70 backdrop-blur-sm text-primary-foreground text-[0.7rem] font-semibold px-2.5 py-0.5 rounded-full tracking-wide">Working</span>
+        <div className="reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]">
+          <div className="rounded-[18px] overflow-hidden bg-card">
+            <img src={aboutMain} alt="Salman Sana studying" className="w-full h-full min-h-[400px] max-h-[520px] object-cover object-[center_top] hover:scale-[1.04] transition-transform duration-[450ms]" loading="lazy" />
           </div>
         </div>
 

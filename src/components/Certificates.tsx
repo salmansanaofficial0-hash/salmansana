@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Upload, X, Award, Calendar, Building2, Plus, Trash2 } from "lucide-react";
+import { Upload, X, Award, Calendar, Building2, Plus, Trash2, Lock } from "lucide-react";
 import { toast } from "sonner";
 
 interface Certificate {
