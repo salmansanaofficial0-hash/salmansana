@@ -1,5 +1,5 @@
 const Footer = () => (
-  <footer className="bg-navy border-t border-primary-foreground/[0.07] py-6 px-[5%] flex flex-col md:flex-row justify-between items-center gap-4">
+  <footer className="bg-navy border-t border-primary-foreground/[0.07] py-6 px-[5%] flex flex-col gap-4 items-center text-center">
     <div className="flex items-center">
       <svg viewBox="0 0 180 30" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
         <rect x="0" y="0" width="30" height="30" rx="7" fill="#ffffff" fillOpacity="0.12"/>
@@ -11,7 +11,7 @@ const Footer = () => (
       </svg>
     </div>
     <div className="text-[0.8rem] text-primary-foreground/30">© 2025 Salman Sana · BBA Student · University of Turbat</div>
-    <div className="flex gap-6">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
       {[
         { label: "Home", href: "#hero" },
         { label: "About", href: "#about" },

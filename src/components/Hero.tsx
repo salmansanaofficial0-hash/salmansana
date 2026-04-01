@@ -2,7 +2,7 @@ import { Linkedin } from "lucide-react";
 import heroPhoto from "@/assets/hero-photo.png";
 
 const Hero = () => (
-  <section id="hero" className="min-h-screen pt-[100px] pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-12 md:gap-20 bg-background relative overflow-hidden">
+  <section id="hero" className="min-h-screen pt-[90px] pb-16 md:pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-8 md:gap-20 bg-background relative overflow-hidden">
     <div className="hero-grid-bg absolute inset-0 pointer-events-none" />
     <div className="hero-vignette absolute inset-0 pointer-events-none" />
 
@@ -34,10 +34,10 @@ const Hero = () => (
       </div>
     </div>
 
-    <div className="relative z-[2] animate-slide-up order-1 md:order-2" style={{ animationDelay: '0.1s' }}>
+    <div className="relative z-[2] animate-slide-up order-1 md:order-2 flex justify-center" style={{ animationDelay: '0.1s' }}>
       <div className="relative">
         <div className="relative bg-background rounded-[28px] border border-border overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_40px_rgba(0,0,0,0.08),0_40px_80px_rgba(0,0,0,0.06)]">
-          <img src={heroPhoto} alt="Salman Sana" className="w-full h-[460px] object-cover object-[center_top] block brightness-[1.04] contrast-[1.06] saturate-[1.1]" />
+          <img src={heroPhoto} alt="Salman Sana" className="w-full h-[320px] sm:h-[400px] md:h-[460px] object-cover object-[center_top] block brightness-[1.04] contrast-[1.06] saturate-[1.1]" />
           <div className="py-4 px-5 flex items-center justify-between border-t border-border bg-background">
             <div>
               <div className="text-[0.92rem] font-bold text-foreground tracking-tight">Salman Sana</div>
