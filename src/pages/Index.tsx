@@ -7,6 +7,7 @@ import Education from "@/components/Education";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => (
   <>
@@ -19,6 +20,7 @@ const Index = () => (
     <Certificates />
     <Contact />
     <Footer />
+    <Chatbot />
   </>
 );
 
