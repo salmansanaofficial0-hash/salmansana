@@ -1,6 +1,4 @@
 import { useEffect, useRef } from "react";
-import aboutMain from "@/assets/about-main.jpg";
-
 const tags = [
   { label: "Finance", cls: "text-primary border-primary/20 bg-blue-light" },
   { label: "Marketing", cls: "text-teal border-teal/20 bg-teal-light" },
