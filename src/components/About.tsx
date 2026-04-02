@@ -1,6 +1,4 @@
 import { useEffect, useRef } from "react";
-import aboutMain from "@/assets/about-main.jpg";
-
 const tags = [
   { label: "Finance", cls: "text-primary border-primary/20 bg-blue-light" },
   { label: "Marketing", cls: "text-teal border-teal/20 bg-teal-light" },
@@ -22,12 +20,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-28 px-[5%] bg-background" ref={ref}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-        <div className="reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]">
-          <div className="rounded-[18px] overflow-hidden bg-card">
-            <img src={aboutMain} alt="Salman Sana studying" className="w-full h-full min-h-[400px] max-h-[520px] object-cover object-[center_top] hover:scale-[1.04] transition-transform duration-[450ms]" loading="lazy" />
-          </div>
-        </div>
+      <div className="max-w-3xl mx-auto">
 
         <div className="reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]" style={{ transitionDelay: '0.08s' }}>
           <div className="text-[0.73rem] font-bold uppercase tracking-[0.16em] text-blue-mid mb-3">About Me</div>
