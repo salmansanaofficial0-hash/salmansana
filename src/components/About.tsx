@@ -29,7 +29,7 @@ const About = () => {
           </h2>
           <div className="space-y-4">
             <p className="text-[0.97rem] text-muted leading-[1.85]">
-              I'm <strong className="text-foreground">Salman Sana</strong>, a passionate BBA student at the <strong className="text-foreground">University of Turbat</strong> with dual specializations in <strong className="text-foreground">Finance</strong> and <strong className="text-foreground">Marketing</strong>. Currently in my 3rd semester, I'm building a strong foundation in business strategy, market dynamics, and financial analysis.
+              I'm <strong className="text-foreground">Salman Sana</strong>, a passionate BBA student at the <strong className="text-foreground">University of Turbat</strong> with dual specializations in <strong className="text-foreground">Finance</strong> and <strong className="text-foreground">Marketing</strong>. Currently in my 4th semester, I'm building a strong foundation in business strategy, market dynamics, and financial analysis.
             </p>
             <p className="text-[0.97rem] text-muted leading-[1.85]">
               My academic journey has equipped me with analytical thinking and a strategic mindset. I'm eager to apply my knowledge through internships and collaborative projects that create meaningful impact.

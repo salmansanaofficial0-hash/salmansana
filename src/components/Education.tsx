@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const timeline = [
-  { year: "August 2024 — Present", degree: "Bachelor of Business Administration", school: "University of Turbat (UOT) · Balochistan, Pakistan", desc: "Specializing in Finance & Marketing. Currently in 3rd Semester — developing expertise in business strategy, market analysis, and financial management.", dotColor: "border-blue-mid", dotShadow: "shadow-[0_0_0_4px_hsl(var(--blue-light))]", yrColor: "text-blue-mid" },
+  { year: "August 2024 — Present", degree: "Bachelor of Business Administration", school: "University of Turbat (UOT) · Balochistan, Pakistan", desc: "Specializing in Finance & Marketing. Currently in 4th Semester — developing expertise in business strategy, market analysis, and financial management.", dotColor: "border-blue-mid", dotShadow: "shadow-[0_0_0_4px_hsl(var(--blue-light))]", yrColor: "text-blue-mid" },
   { year: "2021 — 2023", degree: "FSc — Pre-Science", school: "Bahria College Ormara · Pakistan", desc: "Completed Higher Secondary Certificate in Science, building a strong foundation in analytical and quantitative reasoning.", dotColor: "border-teal", dotShadow: "shadow-[0_0_0_4px_hsl(var(--teal-light))]", yrColor: "text-teal" },
   { year: "2019 — 2021", degree: "Secondary School Certificate (Matric)", school: "BISIE · Quetta, Balochistan", desc: "Completed Class 10th with a Science focus, establishing a strong foundation across core academic disciplines.", dotColor: "border-violet", dotShadow: "shadow-[0_0_0_4px_hsl(var(--violet-light))]", yrColor: "text-violet" },
 ];
