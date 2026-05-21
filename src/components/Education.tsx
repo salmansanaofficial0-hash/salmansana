@@ -48,7 +48,7 @@ const Education = () => {
         <div className="flex flex-col gap-4 reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]" style={{ transitionDelay: '0.1s' }}>
           <div className="bg-gradient-to-br from-blue-light to-[#e0e7ff] border border-primary/15 rounded-[18px] p-6">
             <div className="text-[0.71rem] font-bold uppercase tracking-[0.13em] text-primary mb-2">Currently Pursuing</div>
-            <div className="font-display text-3xl font-bold text-foreground tracking-[-0.03em] leading-none mb-1">BBA · 3rd Sem</div>
+            <div className="font-display text-3xl font-bold text-foreground tracking-[-0.03em] leading-none mb-1">BBA · 4th Sem</div>
             <div className="text-[0.85rem] text-muted">Finance &amp; Marketing<br />University of Turbat</div>
           </div>
 
