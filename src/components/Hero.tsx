@@ -44,7 +44,7 @@ const Hero = () => (
               <div className="text-[0.76rem] text-muted mt-px">Finance &amp; Marketing · UOT</div>
             </div>
             <div className="text-[0.72rem] font-bold tracking-wide bg-blue-light text-primary px-3 py-1 rounded-full border border-primary/20 whitespace-nowrap">
-              3rd Semester · BBA
+              4th Semester · BBA
             </div>
           </div>
         </div>

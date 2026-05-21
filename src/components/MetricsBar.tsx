@@ -1,5 +1,5 @@
 const metrics = [
-  { num: "3rd", label: "Semester" },
+  { num: "4th", label: "Semester" },
   { num: "BBA", label: "Degree Program" },
   { num: "2×", label: "Specializations" },
   { num: "∞", label: "Growth Mindset" },

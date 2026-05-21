@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const timeline = [
-  { year: "August 2024 — Present", degree: "Bachelor of Business Administration", school: "University of Turbat (UOT) · Balochistan, Pakistan", desc: "Specializing in Finance & Marketing. Currently in 3rd Semester — developing expertise in business strategy, market analysis, and financial management.", dotColor: "border-blue-mid", dotShadow: "shadow-[0_0_0_4px_hsl(var(--blue-light))]", yrColor: "text-blue-mid" },
+  { year: "August 2024 — Present", degree: "Bachelor of Business Administration", school: "University of Turbat (UOT) · Balochistan, Pakistan", desc: "Specializing in Finance & Marketing. Currently in 4th Semester — developing expertise in business strategy, market analysis, and financial management.", dotColor: "border-blue-mid", dotShadow: "shadow-[0_0_0_4px_hsl(var(--blue-light))]", yrColor: "text-blue-mid" },
   { year: "2021 — 2023", degree: "FSc — Pre-Science", school: "Bahria College Ormara · Pakistan", desc: "Completed Higher Secondary Certificate in Science, building a strong foundation in analytical and quantitative reasoning.", dotColor: "border-teal", dotShadow: "shadow-[0_0_0_4px_hsl(var(--teal-light))]", yrColor: "text-teal" },
   { year: "2019 — 2021", degree: "Secondary School Certificate (Matric)", school: "BISIE · Quetta, Balochistan", desc: "Completed Class 10th with a Science focus, establishing a strong foundation across core academic disciplines.", dotColor: "border-violet", dotShadow: "shadow-[0_0_0_4px_hsl(var(--violet-light))]", yrColor: "text-violet" },
 ];
@@ -48,7 +48,7 @@ const Education = () => {
         <div className="flex flex-col gap-4 reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]" style={{ transitionDelay: '0.1s' }}>
           <div className="bg-gradient-to-br from-blue-light to-[#e0e7ff] border border-primary/15 rounded-[18px] p-6">
             <div className="text-[0.71rem] font-bold uppercase tracking-[0.13em] text-primary mb-2">Currently Pursuing</div>
-            <div className="font-display text-3xl font-bold text-foreground tracking-[-0.03em] leading-none mb-1">BBA · 3rd Sem</div>
+            <div className="font-display text-3xl font-bold text-foreground tracking-[-0.03em] leading-none mb-1">BBA · 4th Sem</div>
             <div className="text-[0.85rem] text-muted">Finance &amp; Marketing<br />University of Turbat</div>
           </div>
 
