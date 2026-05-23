@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="white"/>
+  
+  <!-- S shape -->
+  <path d="M 280 210 Q 280 140 350 140 L 650 140 Q 750 140 750 210 Q 750 260 680 280 L 320 320 Q 240 330 240 420 Q 240 520 350 540 L 650 540 Q 750 540 750 600 Q 750 700 650 740 L 350 740 Q 280 740 280 670 L 280 670" 
+        fill="none" stroke="black" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Blue dot -->
+  <circle cx="800" cy="800" r="80" fill="#2563eb"/>
+</svg>
