@@ -11,6 +11,56 @@ interface Certificate {
   image_url: string;
 }
 
+const localCertificateExtras: Certificate[] = [
+  {
+    id: "coursera-6ug02qrket4t",
+    title: "Coursera Credential - 6UG02QRKET4T",
+    issuer: "Coursera",
+    date_issued: null,
+    image_url: "/certificates/coursera-6ug02qrket4t.svg",
+  },
+  {
+    id: "coursera-8nk16ap23fr8",
+    title: "Coursera Credential - 8NK16AP23FR8",
+    issuer: "Coursera",
+    date_issued: null,
+    image_url: "/certificates/coursera-8nk16ap23fr8.svg",
+  },
+  {
+    id: "dstp-kp97uaumk",
+    title: "DSTP Credential - KP97UAUMK",
+    issuer: "DSTP",
+    date_issued: null,
+    image_url: "/certificates/dstp-kp97uaumk.svg",
+  },
+  {
+    id: "dstp-5ndngvmk5",
+    title: "DSTP Credential - 5NDNGVMK5",
+    issuer: "DSTP",
+    date_issued: null,
+    image_url: "/certificates/dstp-5ndngvmk5.svg",
+  },
+  {
+    id: "dstp-h9xq5ffmk",
+    title: "DSTP Credential - H9XQ5FFMK",
+    issuer: "DSTP",
+    date_issued: null,
+    image_url: "/certificates/dstp-h9xq5ffmk.svg",
+  },
+];
+
+const mergeCertificates = (existing: Certificate[]) => {
+  const combined = [...existing, ...localCertificateExtras];
+  const seen = new Set<string>();
+
+  return combined.filter(cert => {
+    const key = `${cert.title}|${cert.issuer ?? ""}|${cert.image_url}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
+
 const Certificates = () => {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [showUpload, setShowUpload] = useState(false);
@@ -48,7 +98,8 @@ const Certificates = () => {
   const fetchCertificates = async () => {
     const { data, error } = await supabase.from("certificates").select("*").order("created_at", { ascending: false });
     if (error) console.error("Failed to fetch certificates:", error);
-    if (data) setCertificates(data);
+    const merged = data ? mergeCertificates(data) : localCertificateExtras;
+    setCertificates(merged);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
