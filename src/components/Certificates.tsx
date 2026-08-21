@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Upload, X, Award, Calendar, Building2, Plus, Trash2, Lock } from "lucide-react";
+import { Upload, X, Award, Calendar, Building2, Plus, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
 interface Certificate {
@@ -9,6 +9,7 @@ interface Certificate {
   issuer: string | null;
   date_issued: string | null;
   image_url: string;
+  pdf_url?: string;
 }
 
 const localCertificateExtras: Certificate[] = [
@@ -18,6 +19,7 @@ const localCertificateExtras: Certificate[] = [
     issuer: "Coursera",
     date_issued: null,
     image_url: "/certificates/coursera-6ug02qrket4t.svg",
+    pdf_url: "/certificates/coursera-6ug02qrket4t.pdf",
   },
   {
     id: "coursera-8nk16ap23fr8",
@@ -25,6 +27,7 @@ const localCertificateExtras: Certificate[] = [
     issuer: "Coursera",
     date_issued: null,
     image_url: "/certificates/coursera-8nk16ap23fr8.svg",
+    pdf_url: "/certificates/coursera-8nk16ap23fr8.pdf",
   },
   {
     id: "dstp-kp97uaumk",
@@ -32,6 +35,7 @@ const localCertificateExtras: Certificate[] = [
     issuer: "DSTP",
     date_issued: null,
     image_url: "/certificates/dstp-kp97uaumk.svg",
+    pdf_url: "/certificates/dstp-kp97uaumk.pdf",
   },
   {
     id: "dstp-5ndngvmk5",
@@ -39,6 +43,7 @@ const localCertificateExtras: Certificate[] = [
     issuer: "DSTP",
     date_issued: null,
     image_url: "/certificates/dstp-5ndngvmk5.svg",
+    pdf_url: "/certificates/dstp-5ndngvmk5.pdf",
   },
   {
     id: "dstp-h9xq5ffmk",
@@ -46,6 +51,7 @@ const localCertificateExtras: Certificate[] = [
     issuer: "DSTP",
     date_issued: null,
     image_url: "/certificates/dstp-h9xq5ffmk.svg",
+    pdf_url: "/certificates/dstp-h9xq5ffmk.pdf",
   },
 ];
 
@@ -244,6 +250,12 @@ const Certificates = () => {
                   <div className="flex items-center gap-1.5 text-[0.75rem] text-muted">
                     <Calendar size={12} /> {new Date(cert.date_issued).toLocaleDateString("en-US", { year: "numeric", month: "short" })}
                   </div>
+                )}
+                {cert.pdf_url && (
+                  <a href={cert.pdf_url} target="_blank" rel="noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-[0.72rem] font-semibold text-blue-mid hover:text-foreground transition-colors">
+                    <ExternalLink size={12} /> View original PDF
+                  </a>
                 )}
                 {isAdmin && (
                   <button onClick={() => handleDelete(cert.id, cert.image_url)}
