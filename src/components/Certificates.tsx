@@ -53,6 +53,41 @@ const localCertificateExtras: Certificate[] = [
     image_url: "/certificates/dstp-h9xq5ffmk.svg",
     pdf_url: "/certificates/dstp-h9xq5ffmk.pdf",
   },
+  {
+    id: "ai-fluency-cert",
+    title: "AI Fluency Certificate",
+    issuer: null,
+    date_issued: null,
+    image_url: "/certificates/ai-fluency-cert.jpg",
+  },
+  {
+    id: "beli-personal-branding",
+    title: "Personal Branding Certificate",
+    issuer: "BELI",
+    date_issued: null,
+    image_url: "/certificates/beli-personal-branding.png",
+  },
+  {
+    id: "business-skill-competitions",
+    title: "Business Skills Competition Certificate",
+    issuer: null,
+    date_issued: null,
+    image_url: "/certificates/business-skill-competitions.png",
+  },
+  {
+    id: "karbaar-youth-summit",
+    title: "Karbaar Youth Summit Certificate",
+    issuer: "Karbaar",
+    date_issued: null,
+    image_url: "/certificates/karbaar-youth-summit.png",
+  },
+  {
+    id: "national-youth-summit-gwadar",
+    title: "National Youth Summit Gwadar Certificate",
+    issuer: null,
+    date_issued: null,
+    image_url: "/certificates/national-youth-summit-gwadar.png",
+  },
 ];
 
 const mergeCertificates = (existing: Certificate[]) => {
