@@ -18,7 +18,7 @@ const localCertificateExtras: Certificate[] = [
     title: "Coursera Credential - 6UG02QRKET4T",
     issuer: "Coursera",
     date_issued: null,
-    image_url: "/certificates/coursera-6ug02qrket4t.pdf",
+    image_url: "/certificates/coursera-6ug02qrket4t.png",
     pdf_url: "/certificates/coursera-6ug02qrket4t.pdf",
   },
   {
@@ -26,7 +26,7 @@ const localCertificateExtras: Certificate[] = [
     title: "Coursera Credential - 8NK16AP23FR8",
     issuer: "Coursera",
     date_issued: null,
-    image_url: "/certificates/coursera-8nk16ap23fr8.pdf",
+    image_url: "/certificates/coursera-8nk16ap23fr8.png",
     pdf_url: "/certificates/coursera-8nk16ap23fr8.pdf",
   },
   {
@@ -34,7 +34,7 @@ const localCertificateExtras: Certificate[] = [
     title: "DSTP Credential - KP97UAUMK",
     issuer: "DSTP",
     date_issued: null,
-    image_url: "/certificates/dstp-kp97uaumk.pdf",
+    image_url: "/certificates/dstp-kp97uaumk.png",
     pdf_url: "/certificates/dstp-kp97uaumk.pdf",
   },
   {
@@ -42,7 +42,7 @@ const localCertificateExtras: Certificate[] = [
     title: "DSTP Credential - 5NDNGVMK5",
     issuer: "DSTP",
     date_issued: null,
-    image_url: "/certificates/dstp-5ndngvmk5.pdf",
+    image_url: "/certificates/dstp-5ndngvmk5.png",
     pdf_url: "/certificates/dstp-5ndngvmk5.pdf",
   },
   {
@@ -50,7 +50,7 @@ const localCertificateExtras: Certificate[] = [
     title: "DSTP Credential - SALMAN SANA",
     issuer: "DSTP",
     date_issued: null,
-    image_url: "/certificates/dstp-h9xq5ffmk.pdf",
+    image_url: "/certificates/dstp-h9xq5ffmk.png",
     pdf_url: "/certificates/dstp-h9xq5ffmk.pdf",
   },
   {
@@ -269,11 +269,7 @@ const Certificates = () => {
               className="group bg-background border border-border rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)] hover:border-transparent reveal-el opacity-0 translate-y-5"
               style={{ transitionDelay: `${i * 0.07}s`, transitionDuration: '650ms', animationFillMode: 'forwards' }}>
               <div className="relative cursor-pointer" onClick={() => setViewImage(cert.image_url)}>
-                {cert.image_url.toLowerCase().endsWith(".pdf") ? (
-                  <iframe src={cert.image_url} title={cert.title} className="w-full h-48 pointer-events-none" />
-                ) : (
-                  <img src={cert.image_url} alt={cert.title} className="w-full h-48 object-cover" loading="lazy" />
-                )}
+                <img src={cert.image_url} alt={cert.title} className="w-full h-48 object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
                   <Award size={32} className="text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -317,11 +313,7 @@ const Certificates = () => {
       {viewImage && (
         <div className="fixed inset-0 z-[300] bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-8" onClick={() => setViewImage(null)}>
           <div className="relative max-w-4xl max-h-[90vh]">
-            {viewImage.toLowerCase().endsWith(".pdf") ? (
-              <iframe src={viewImage} title="Certificate" className="w-[min(90vw,900px)] h-[85vh] rounded-xl bg-primary-foreground" />
-            ) : (
-              <img src={viewImage} alt="Certificate" className="max-w-full max-h-[85vh] object-contain rounded-xl" />
-            )}
+            <img src={viewImage} alt="Certificate" className="max-w-full max-h-[85vh] object-contain rounded-xl" />
             <button onClick={() => setViewImage(null)} className="absolute -top-3 -right-3 bg-primary-foreground text-foreground w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
               <X size={16} />
             </button>
