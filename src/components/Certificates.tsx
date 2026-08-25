@@ -95,9 +95,13 @@ const mergeCertificates = (existing: Certificate[]) => {
   const seen = new Set<string>();
 
   return combined.filter(cert => {
-    const key = `${cert.title}|${cert.issuer ?? ""}|${cert.image_url}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
+    const titleKey = cert.title.trim().toLowerCase().replace(/\s+/g, " ");
+    const issuerKey = (cert.issuer ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+    const imageKey = cert.image_url.split("?")[0].split("/").pop()?.toLowerCase() ?? cert.image_url;
+    const keys = [`title:${titleKey}|issuer:${issuerKey}`, `image:${imageKey}`];
+
+    if (keys.some(key => seen.has(key))) return false;
+    keys.forEach(key => seen.add(key));
     return true;
   });
 };
