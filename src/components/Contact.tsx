@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Linkedin, Phone, Mail, MapPin } from "lucide-react";
+import { useSiteContent } from "@/lib/site-content";
 
 const Contact = () => {
+  const { contact } = useSiteContent();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const obs = new IntersectionObserver(entries => {
@@ -26,34 +28,34 @@ const Contact = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-10 text-left reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]" style={{ transitionDelay: '0.18s' }}>
-          <a href="https://www.linkedin.com/in/salman-sana-/" target="_blank" rel="noopener noreferrer"
+          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer"
              className="bg-primary-foreground/5 border border-primary-foreground/[0.09] rounded-[18px] p-5 flex items-center gap-4 no-underline text-primary-foreground transition-all hover:bg-primary-foreground/[0.09] hover:border-primary-foreground/[0.18] hover:-translate-y-0.5">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[rgba(0,119,181,0.2)]">
               <Linkedin size={20} className="text-blue-400" />
             </div>
             <div>
               <div className="text-[0.68rem] text-primary-foreground/[0.38] uppercase tracking-[0.1em] mb-0.5 font-medium">LinkedIn</div>
-              <div className="text-[0.88rem] font-semibold tracking-tight">linkedin.com/in/salman-sana-</div>
+              <div className="text-[0.88rem] font-semibold tracking-tight">{contact.linkedin.replace(/^https?:\/\//, "")}</div>
             </div>
           </a>
-          <a href="tel:+923438359055"
+          <a href={`tel:${contact.phone.replace(/\s/g, "")}`}
              className="bg-primary-foreground/5 border border-primary-foreground/[0.09] rounded-[18px] p-5 flex items-center gap-4 no-underline text-primary-foreground transition-all hover:bg-primary-foreground/[0.09] hover:border-primary-foreground/[0.18] hover:-translate-y-0.5">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[rgba(52,211,153,0.15)]">
               <Phone size={20} className="text-emerald-400" />
             </div>
             <div>
               <div className="text-[0.68rem] text-primary-foreground/[0.38] uppercase tracking-[0.1em] mb-0.5 font-medium">Phone / WhatsApp</div>
-              <div className="text-[0.88rem] font-semibold tracking-tight">0343 835 9055</div>
+              <div className="text-[0.88rem] font-semibold tracking-tight">{contact.phone}</div>
             </div>
           </a>
-          <a href="mailto:salmansanajan@gmail.com"
+          <a href={`mailto:${contact.email}`}
              className="bg-primary-foreground/5 border border-primary-foreground/[0.09] rounded-[18px] p-5 flex items-center gap-4 no-underline text-primary-foreground transition-all hover:bg-primary-foreground/[0.09] hover:border-primary-foreground/[0.18] hover:-translate-y-0.5">
             <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[rgba(248,113,113,0.15)]">
               <Mail size={20} className="text-red-400" />
             </div>
             <div>
               <div className="text-[0.68rem] text-primary-foreground/[0.38] uppercase tracking-[0.1em] mb-0.5 font-medium">Email</div>
-              <div className="text-[0.88rem] font-semibold tracking-tight">salmansanajan@gmail.com</div>
+              <div className="text-[0.88rem] font-semibold tracking-tight">{contact.email}</div>
             </div>
           </a>
           <div className="bg-primary-foreground/5 border border-primary-foreground/[0.09] rounded-[18px] p-5 flex items-center gap-4 cursor-default text-primary-foreground">
@@ -62,12 +64,12 @@ const Contact = () => {
             </div>
             <div>
               <div className="text-[0.68rem] text-primary-foreground/[0.38] uppercase tracking-[0.1em] mb-0.5 font-medium">Location</div>
-              <div className="text-[0.88rem] font-semibold tracking-tight">Turbat, Balochistan, Pakistan</div>
+              <div className="text-[0.88rem] font-semibold tracking-tight">{contact.location}</div>
             </div>
           </div>
         </div>
 
-        <a href="https://www.linkedin.com/in/salman-sana-/" target="_blank" rel="noopener noreferrer"
+        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer"
            className="inline-flex items-center gap-2.5 bg-primary-foreground text-foreground px-10 py-4 rounded-full no-underline text-[0.95rem] font-extrabold tracking-tight transition-all hover:bg-blue-light hover:text-blue-mid hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)] reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]"
            style={{ transitionDelay: '0.24s' }}>
           <Linkedin size={20} />

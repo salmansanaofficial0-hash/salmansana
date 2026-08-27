@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          user_id: string
+          created_at: string
+        }
+        Insert: {
+          user_id: string
+          created_at?: string
+        }
+        Update: {
+          user_id?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          id: string
+          content: Json
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          content?: Json
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          content?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       certificates: {
         Row: {
           created_at: string

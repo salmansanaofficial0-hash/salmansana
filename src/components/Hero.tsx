@@ -1,7 +1,11 @@
 import { Linkedin } from "lucide-react";
 import heroPhoto from "@/assets/hero-photo.png";
+import { useSiteContent } from "@/lib/site-content";
 
-const Hero = () => (
+const Hero = () => {
+  const content = useSiteContent();
+  const [firstName, ...lastName] = content.hero.title.split(" ");
+  return (
   <section id="hero" className="min-h-screen pt-[90px] pb-16 md:pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-8 md:gap-20 bg-background relative overflow-hidden">
     <div className="hero-grid-bg absolute inset-0 pointer-events-none" />
     <div className="hero-vignette absolute inset-0 pointer-events-none" />
@@ -9,17 +13,16 @@ const Hero = () => (
     <div className="relative z-[2] order-2 md:order-1">
       <div className="inline-flex items-center gap-2 bg-teal-light border border-teal/20 text-teal text-[0.76rem] font-bold tracking-[0.08em] uppercase px-4 py-1.5 rounded-full mb-8 animate-slide-up">
         <div className="w-[7px] h-[7px] rounded-full bg-teal animate-pdot" />
-        Open to Internships
+        {content.hero.availability}
       </div>
       <h1 className="font-display text-[clamp(4rem,6.5vw,7.5rem)] font-bold leading-[0.92] tracking-[-0.03em] text-foreground mb-5 animate-slide-up" style={{ animationDelay: '0.07s' }}>
-        Salman<br /><em className="italic text-blue-mid">Sana</em>
+        {firstName}<br /><em className="italic text-blue-mid">{lastName.join(" ")}</em>
       </h1>
       <p className="text-[1.05rem] font-medium text-muted mb-6 leading-relaxed animate-slide-up" style={{ animationDelay: '0.14s' }}>
-        <strong className="text-foreground font-bold">BBA Student</strong> — Finance &amp; Marketing<br />
-        University of Turbat, Balochistan
+        {content.hero.subtitle.split("\n").map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}
       </p>
       <p className="text-[0.97rem] text-muted leading-[1.85] max-w-[500px] mb-10 animate-slide-up" style={{ animationDelay: '0.21s' }}>
-        Combining academic knowledge with strategic thinking to create business impact and growth opportunities. Passionate about market analysis, financial concepts, and building meaningful brands.
+        {content.hero.description}
       </p>
       <div className="flex gap-3 flex-wrap animate-slide-up" style={{ animationDelay: '0.28s' }}>
         <a href="https://www.linkedin.com/in/salman-sana-/" target="_blank" rel="noopener noreferrer"
@@ -59,6 +62,7 @@ const Hero = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;

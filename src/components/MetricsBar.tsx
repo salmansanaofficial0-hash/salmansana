@@ -1,11 +1,8 @@
-const metrics = [
-  { num: "4th", label: "Semester" },
-  { num: "BBA", label: "Degree Program" },
-  { num: "2×", label: "Specializations" },
-  { num: "∞", label: "Growth Mindset" },
-];
+import { useSiteContent } from "@/lib/site-content";
 
-const MetricsBar = () => (
+const MetricsBar = () => {
+  const { metrics } = useSiteContent();
+  return (
   <div className="bg-ink grid grid-cols-2 md:grid-cols-4">
     {metrics.map((m, i) => (
       <div key={i} className="py-8 px-6 text-center border-r border-primary-foreground/[0.07] last:border-r-0">
@@ -14,6 +11,7 @@ const MetricsBar = () => (
       </div>
     ))}
   </div>
-);
+  );
+};
 
 export default MetricsBar;
