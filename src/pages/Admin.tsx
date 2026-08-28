@@ -11,6 +11,7 @@ const Admin = () => {
   const [authorized, setAuthorized] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accessError, setAccessError] = useState<string | null>(null);
   const [content, setContent] = useState<SiteContent>(defaultSiteContent);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -20,16 +21,18 @@ const Admin = () => {
       const user = data.session?.user;
       setSessionEmail(user?.email ?? null);
       if (user) {
-        const { data: admin } = await supabase.from("admin_users").select("user_id").eq("user_id", user.id).maybeSingle();
+        const { data: admin, error } = await supabase.from("admin_users").select("user_id").eq("user_id", user.id).maybeSingle();
         setAuthorized(!!admin);
+        if (error) setAccessError(`Signed in, but administrator access could not be checked: ${error.message}`);
       }
       setLoading(false);
     });
     const { data: listener } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
       setSessionEmail(nextSession?.user.email ?? null);
       if (nextSession?.user) {
-        const { data: admin } = await supabase.from("admin_users").select("user_id").eq("user_id", nextSession.user.id).maybeSingle();
+        const { data: admin, error } = await supabase.from("admin_users").select("user_id").eq("user_id", nextSession.user.id).maybeSingle();
         setAuthorized(!!admin);
+        setAccessError(error ? `Signed in, but administrator access could not be checked: ${error.message}` : null);
       } else setAuthorized(false);
     });
     return () => listener.subscription.unsubscribe();
@@ -44,9 +47,23 @@ const Admin = () => {
 
   const signIn = async (event: FormEvent) => {
     event.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    setAccessError(null);
+    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     if (error) toast.error(error.message);
     else toast.success("Welcome back");
+  };
+
+  const resetPassword = async () => {
+    const normalizedEmail = email.trim();
+    if (!normalizedEmail) {
+      toast.error("Enter your admin email first");
+      return;
+    }
+    const { error } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
+      redirectTo: `${window.location.origin}/admin`,
+    });
+    if (error) toast.error(error.message);
+    else toast.success("Password reset email sent");
   };
 
   const save = async () => {
@@ -68,11 +85,12 @@ const Admin = () => {
         <div className="w-11 h-11 rounded-xl bg-ink text-white flex items-center justify-center mb-6"><ShieldCheck size={22} /></div>
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-mid mb-2">Private workspace</p>
         <h1 className="font-display text-4xl font-bold text-foreground mb-2">Site admin</h1>
-        <p className="text-sm text-muted mb-7">{sessionEmail ? "This account is not provisioned as an administrator." : "Sign in with the Supabase account created for this website."}</p>
+        <p className="text-sm text-muted mb-7">{accessError ?? (sessionEmail ? "This account is not provisioned as an administrator. Add its Auth user ID to the admin_users table in Supabase." : "Sign in with the Supabase account created for this website.")}</p>
         <div className="space-y-4">
           <input className={fieldClass} type="email" required placeholder="Admin email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input className={fieldClass} type="password" required placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           {!sessionEmail && <button className="w-full rounded-lg bg-ink text-white py-3 text-sm font-bold hover:bg-blue-mid transition-colors">Sign in</button>}
+          {!sessionEmail && <button type="button" onClick={resetPassword} className="w-full text-sm font-semibold text-blue-mid hover:underline">Forgot password?</button>}
         </div>
         <a href="/" className="mt-6 inline-flex items-center gap-2 text-sm text-muted hover:text-foreground"><ExternalLink size={14} /> View website</a>
       </form>
