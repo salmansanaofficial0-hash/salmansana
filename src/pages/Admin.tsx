@@ -11,6 +11,8 @@ const Admin = () => {
   const [authorized, setAuthorized] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [recoveryMode, setRecoveryMode] = useState(false);
   const [accessError, setAccessError] = useState<string | null>(null);
   const [content, setContent] = useState<SiteContent>(defaultSiteContent);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,8 @@ const Admin = () => {
       }
       setLoading(false);
     });
-    const { data: listener } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange(async (event, nextSession) => {
+      if (event === "PASSWORD_RECOVERY") setRecoveryMode(true);
       setSessionEmail(nextSession?.user.email ?? null);
       if (nextSession?.user) {
         const { data: admin, error } = await supabase.from("admin_users").select("user_id").eq("user_id", nextSession.user.id).maybeSingle();
@@ -49,8 +52,25 @@ const Admin = () => {
     event.preventDefault();
     setAccessError(null);
     const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    setPassword("");
     if (error) toast.error(error.message);
     else toast.success("Welcome back");
+  };
+
+  const updatePassword = async (event: FormEvent) => {
+    event.preventDefault();
+    if (newPassword.length < 8) {
+      toast.error("Use at least 8 characters");
+      return;
+    }
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setNewPassword("");
+    setRecoveryMode(false);
+    toast.success("Password updated successfully");
   };
 
   const resetPassword = async () => {
@@ -79,6 +99,18 @@ const Admin = () => {
   };
 
   if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-muted">Loading admin...</div>;
+  if (recoveryMode) return (
+    <main className="min-h-screen bg-[#f6f7f9] flex items-center justify-center px-5">
+      <form onSubmit={updatePassword} className="w-full max-w-md bg-background border border-border rounded-2xl p-8 shadow-xl">
+        <div className="w-11 h-11 rounded-xl bg-ink text-white flex items-center justify-center mb-6"><ShieldCheck size={22} /></div>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-mid mb-2">Secure recovery</p>
+        <h1 className="font-display text-4xl font-bold text-foreground mb-2">Choose a new password</h1>
+        <p className="text-sm text-muted mb-7">Use at least eight characters and avoid reusing an old password.</p>
+        <input className={fieldClass} type="password" minLength={8} required autoComplete="new-password" placeholder="New password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} />
+        <button className="mt-4 w-full rounded-lg bg-ink text-white py-3 text-sm font-bold hover:bg-blue-mid transition-colors">Update password</button>
+      </form>
+    </main>
+  );
   if (!sessionEmail || !authorized) return (
     <main className="min-h-screen bg-[#f6f7f9] flex items-center justify-center px-5">
       <form onSubmit={signIn} className="w-full max-w-md bg-background border border-border rounded-2xl p-8 shadow-xl">
@@ -120,7 +152,7 @@ const Admin = () => {
           </section>
           <div className="space-y-6">
             <section className="bg-background border border-border rounded-2xl p-6 md:p-8"><h2 className="font-display text-2xl font-bold mb-6">Metrics</h2><div className="space-y-3">{content.metrics.map((metric, index) => <div className="grid grid-cols-[0.65fr_1fr] gap-3" key={index}><input className={fieldClass} value={metric.num} aria-label={`Metric ${index + 1} value`} onChange={(e) => setContent((current) => ({ ...current, metrics: current.metrics.map((item, i) => i === index ? { ...item, num: e.target.value } : item) }))} /><input className={fieldClass} value={metric.label} aria-label={`Metric ${index + 1} label`} onChange={(e) => setContent((current) => ({ ...current, metrics: current.metrics.map((item, i) => i === index ? { ...item, label: e.target.value } : item) }))} /></div>)}</div></section>
-            <section className="bg-background border border-border rounded-2xl p-6 md:p-8"><h2 className="font-display text-2xl font-bold mb-6">Contact details</h2><div className="space-y-4"><label className="block text-sm font-semibold">Phone<input className={`${fieldClass} mt-2`} value={content.contact.phone} onChange={(e) => updateContact("phone", e.target.value)} /></label><label className="block text-sm font-semibold">Email<input className={`${fieldClass} mt-2`} value={content.contact.email} onChange={(e) => updateContact("email", e.target.value)} /></label><label className="block text-sm font-semibold">Location<input className={`${fieldClass} mt-2`} value={content.contact.location} onChange={(e) => updateContact("location", e.target.value)} /></label><label className="block text-sm font-semibold">LinkedIn URL<input className={`${fieldClass} mt-2`} value={content.contact.linkedin} onChange={(e) => updateContact("linkedin", e.target.value)} /></label></div></section>
+            <section className="bg-background border border-border rounded-2xl p-6 md:p-8"><h2 className="font-display text-2xl font-bold mb-6">Contact details</h2><div className="space-y-4"><label className="block text-sm font-semibold">Email<input className={`${fieldClass} mt-2`} value={content.contact.email} onChange={(e) => updateContact("email", e.target.value)} /></label><label className="block text-sm font-semibold">Location<input className={`${fieldClass} mt-2`} value={content.contact.location} onChange={(e) => updateContact("location", e.target.value)} /></label><label className="block text-sm font-semibold">LinkedIn URL<input className={`${fieldClass} mt-2`} value={content.contact.linkedin} onChange={(e) => updateContact("linkedin", e.target.value)} /></label></div></section>
           </div>
         </div>
         <div className="mt-6 flex justify-end"><button onClick={save} disabled={saving} className="inline-flex items-center gap-2 rounded-lg bg-ink text-white px-5 py-3 text-sm font-bold hover:bg-blue-mid transition-colors disabled:opacity-50"><Save size={16} />{saving ? "Publishing..." : "Publish changes"}</button></div>

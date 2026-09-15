@@ -9,7 +9,24 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+    const payload = await req.json();
+    if (!Array.isArray(payload?.messages) || payload.messages.length === 0 || payload.messages.length > 12) {
+      return new Response(JSON.stringify({ error: "Invalid conversation" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const messages = payload.messages
+      .filter((message: unknown): message is { role: "user" | "assistant"; content: string } => {
+        if (!message || typeof message !== "object") return false;
+        const item = message as Record<string, unknown>;
+        return (item.role === "user" || item.role === "assistant") && typeof item.content === "string" && item.content.length <= 800;
+      })
+      .slice(-12);
+    if (messages.length !== payload.messages.length) {
+      return new Response(JSON.stringify({ error: "Invalid message format" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
@@ -64,7 +81,7 @@ Be friendly, concise, and helpful. If asked something you don't know about Salma
     });
   } catch (e) {
     console.error("chat error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Chat service is temporarily unavailable" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

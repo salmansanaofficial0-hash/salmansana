@@ -4,6 +4,7 @@ import MetricsBar from "@/components/MetricsBar";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
+import FeaturedWork from "@/components/FeaturedWork";
 import Certificates from "@/components/Certificates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ const Index = () => (
     <MetricsBar />
     <About />
     <Skills />
+    <FeaturedWork />
     <Education />
     <Certificates />
     <Contact />

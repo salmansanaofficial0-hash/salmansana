@@ -1,29 +1,14 @@
+import { ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const Footer = () => (
-  <footer className="bg-navy border-t border-primary-foreground/[0.07] py-6 px-[5%] flex flex-col gap-4 items-center text-center">
-    <div className="flex items-center">
-      <svg viewBox="0 0 180 30" xmlns="http://www.w3.org/2000/svg" className="h-7 w-auto">
-        <rect x="0" y="0" width="30" height="30" rx="7" fill="#ffffff" fillOpacity="0.12"/>
-        <path d="M7 10 Q7 7 10 7 L20 7 Q23 7 23 10 Q23 13 20 13.5 L10 17 Q7 17.5 7 20.5 Q7 23 10 23 L20 23 Q23 23 23 20.5" 
-              fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"/>
-        <circle cx="25" cy="25" r="2" fill="#2563eb"/>
-        <text x="38" y="13" fontFamily="Georgia, serif" fontSize="12" fontWeight="700" fill="#ffffff" letterSpacing="-0.3">Salman</text>
-        <text x="38" y="26" fontFamily="sans-serif" fontSize="8" fontWeight="600" fill="rgba(255,255,255,0.45)" letterSpacing="2">SANA</text>
-      </svg>
-    </div>
-    <div className="text-[0.8rem] text-primary-foreground/30">© 2025 Salman Sana · BBA Student · University of Turbat</div>
-    <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-      {[
-        { label: "Home", href: "#hero" },
-        { label: "About", href: "#about" },
-        { label: "Skills", href: "#skills" },
-        { label: "Education", href: "#education" },
-        { label: "LinkedIn ↗", href: "https://www.linkedin.com/in/salman-sana-/", external: true },
-      ].map(l => (
-        <a key={l.label} href={l.href} {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-           className="text-[0.8rem] text-primary-foreground/[0.38] no-underline transition-colors hover:text-primary-foreground">
-          {l.label}
-        </a>
-      ))}
+  <footer className="border-t border-white/10 bg-navy pb-8 pt-10 text-white">
+    <div className="site-container flex flex-col gap-8">
+      <div className="flex flex-col justify-between gap-6 border-b border-white/10 pb-9 sm:flex-row sm:items-center">
+        <Link to="/" className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-yellow-300 text-xs font-extrabold text-ink">SS</span><span className="font-display text-base font-extrabold tracking-[-.03em]">SALMAN SANA</span></Link>
+        <div className="flex flex-wrap gap-5 text-sm font-semibold text-white/45"><Link to="/about" className="hover:text-white">About</Link><Link to="/portfolio" className="hover:text-white">Work</Link><Link to="/blog" className="hover:text-white">Insights</Link><a href="/#contact" className="hover:text-white">Contact</a></div>
+      </div>
+      <div className="flex items-center justify-between gap-4 text-xs text-white/30"><p>© {new Date().getFullYear()} Salman Sana. Built with purpose in Balochistan.</p><a href="#top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white/60 hover:border-white/30 hover:text-white" aria-label="Back to top"><ArrowUp size={16} /></a></div>
     </div>
   </footer>
 );

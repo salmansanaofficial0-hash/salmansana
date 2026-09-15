@@ -1,253 +1,31 @@
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet";
-import { ExternalLink, Github } from "lucide-react";
+import Contact from "@/components/Contact";
+import { projects } from "@/lib/portfolio-data";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  skills: string[];
-  impact: string;
-  image?: string;
-  link?: string;
-  github?: string;
-}
+const categories = ["All", "Product", "Platform", "Community", "Digital"] as const;
 
 const Portfolio = () => {
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Financial Analysis Dashboard",
-      description:
-        "Developed a comprehensive financial analysis tool that tracks market trends and provides investment insights for retail investors.",
-      category: "Finance",
-      skills: ["Financial Analysis", "Data Visualization", "Market Research"],
-      impact: "Helped 100+ users track their investments effectively",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Digital Marketing Campaign",
-      description:
-        "Designed and executed a multi-channel digital marketing campaign that increased brand awareness by 150%.",
-      category: "Marketing",
-      skills: ["Social Media Marketing", "Content Strategy", "Analytics"],
-      impact: "150% increase in brand awareness, 45% boost in engagement",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Business Strategy Analysis",
-      description:
-        "Conducted in-depth market analysis and created a strategic business plan for a startup seeking Series A funding.",
-      category: "Business",
-      skills: ["Market Analysis", "Strategic Planning", "Financial Modeling"],
-      impact: "Secured $500K in seed funding",
-      link: "#",
-    },
-    {
-      id: 4,
-      title: "Consumer Behavior Study",
-      description:
-        "Researched and analyzed consumer behavior patterns to develop targeted marketing strategies for a retail brand.",
-      category: "Marketing",
-      skills: ["Consumer Research", "Data Analysis", "Marketing Strategy"],
-      impact: "Increased sales by 35% through targeted campaigns",
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "Financial Planning Tool",
-      description:
-        "Created an interactive financial planning calculator for personal finance management and budgeting.",
-      category: "Finance",
-      skills: ["Financial Planning", "Web Development", "UX Design"],
-      impact: "1000+ downloads in first month",
-      link: "#",
-    },
-    {
-      id: 6,
-      title: "Brand Strategy Development",
-      description:
-        "Developed a complete brand strategy and identity system for a new e-commerce startup.",
-      category: "Marketing",
-      skills: ["Brand Strategy", "Positioning", "Market Analysis"],
-      impact: "Established strong brand presence in competitive market",
-      link: "#",
-    },
-  ];
-
-  const categories = ["All", "Finance", "Marketing", "Business"];
-  const [selectedCategory, setSelectedCategory] = ["All"];
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === selectedCategory);
-
+  const [selectedCategory, setSelectedCategory] = useState<(typeof categories)[number]>("All");
+  const filtered = selectedCategory === "All" ? projects : projects.filter((project) => project.category === selectedCategory);
   return (
     <>
-      <Helmet>
-        <title>Portfolio | Salman Sana - Finance & Marketing Projects</title>
-        <meta
-          name="description"
-          content="Explore Salman Sana's portfolio of finance, marketing, and business projects. See case studies and real-world applications of expertise in financial analysis and market strategy."
-        />
-        <meta
-          name="keywords"
-          content="portfolio, projects, finance projects, marketing campaigns, business analysis, case studies"
-        />
-        <link rel="canonical" href="https://www.salmansana.me/portfolio" />
-      </Helmet>
+      <Helmet><title>Projects | Salman Sana</title><meta name="description" content="Explore Salman Sana's real projects across product strategy, student opportunities, digital products and youth-community work." /><link rel="canonical" href="https://www.salmansana.me/portfolio" /></Helmet>
       <Navbar />
-      <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="py-20 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-foreground">
-              Portfolio
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-              Explore my finance, marketing, and business projects. Each project demonstrates 
-              my analytical skills, strategic thinking, and ability to deliver measurable results.
-            </p>
-          </div>
-        </section>
-
-        {/* Filter Section */}
-        <section className="py-12 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-foreground">Filter by Category</h2>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory([category])}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                  selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card border border-border text-foreground hover:border-primary"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Projects Grid */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="bg-card rounded-lg border border-border overflow-hidden hover:border-primary transition-colors group"
-              >
-                {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
-                  <div className="text-center">
-                    <div className="text-4xl font-display font-bold text-primary/50 mb-2">
-                      {project.id}
-                    </div>
-                    <p className="text-sm text-muted-foreground">{project.category}</p>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-foreground">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Skills */}
-                  <div className="mb-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Impact */}
-                  <div className="mb-4 p-3 bg-background rounded border border-border/50">
-                    <p className="text-sm font-semibold text-foreground mb-1">Impact:</p>
-                    <p className="text-xs text-muted-foreground">{project.impact}</p>
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex gap-3">
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded hover:opacity-90 transition-opacity text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        View Project
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        className="flex items-center justify-center gap-2 px-3 py-2 bg-card border border-border rounded hover:border-primary transition-colors"
-                      >
-                        <Github size={16} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold mb-12 text-foreground text-center">
-            Project Statistics
-          </h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="bg-card p-6 rounded-lg border border-border text-center">
-              <div className="text-3xl font-bold text-primary mb-2">6+</div>
-              <p className="text-muted-foreground">Completed Projects</p>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border text-center">
-              <div className="text-3xl font-bold text-primary mb-2">3</div>
-              <p className="text-muted-foreground">Project Categories</p>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border text-center">
-              <div className="text-3xl font-bold text-primary mb-2">500%</div>
-              <p className="text-muted-foreground">Average Impact</p>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border text-center">
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <p className="text-muted-foreground">Client Success Rate</p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-display font-bold mb-6 text-foreground">
-            Interested in My Work?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss how I can help with your finance, marketing, or business projects.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            Start a Project
-          </a>
-        </section>
-      </div>
+      <main>
+        <section className="page-hero noise"><div className="grid-lines absolute inset-0 opacity-10" /><div className="site-container relative"><p className="page-kicker">Selected projects</p><h1 className="page-title">Work that turns<br /><span className="text-yellow-300">thinking into action.</span></h1><p className="page-lead">A collection of products, platforms and initiatives shaped through research, business thinking, collaboration and steady iteration.</p></div></section>
+        <section className="section-space"><div className="site-container">
+          <div className="flex flex-col justify-between gap-6 border-b border-border pb-8 md:flex-row md:items-end"><div><span className="eyebrow">Project index</span><h2 className="section-title mt-5">Real work. Honest outcomes.</h2></div><div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects">{categories.map((category) => <button key={category} onClick={() => setSelectedCategory(category)} className={`rounded-full px-4 py-2 text-xs font-bold transition ${selectedCategory === category ? "bg-ink text-white" : "border border-border bg-white hover:border-foreground"}`} aria-pressed={selectedCategory === category}>{category}</button>)}</div></div>
+          <div className="mt-10 space-y-5">{filtered.map((project, index) => <article key={project.id} className="group grid overflow-hidden rounded-[1.6rem] border border-border bg-card transition hover:border-primary/30 hover:shadow-[0_25px_70px_rgba(15,23,42,.08)] lg:grid-cols-[.4fr_1fr]">
+            <div className={`relative min-h-[230px] overflow-hidden bg-gradient-to-br ${project.accent} p-7 text-ink`}><div className="grid-lines absolute inset-0 opacity-20" /><span className="relative text-xs font-extrabold tracking-[.18em]">{project.id} / {String(filtered.length).padStart(2, "0")}</span><p className="absolute bottom-7 left-7 font-display text-5xl font-extrabold tracking-[-.07em] opacity-25">{project.category}</p></div>
+            <div className="p-7 md:p-10"><div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start"><div><p className="text-[.65rem] font-extrabold uppercase tracking-[.18em] text-primary">{project.category}</p><h3 className="mt-2 font-display text-3xl font-extrabold tracking-[-.05em] md:text-4xl">{project.title}</h3></div>{project.link && <a href={project.link} target="_blank" rel="noreferrer" className="secondary-button shrink-0">{project.linkLabel} <ArrowUpRight size={16} /></a>}</div><p className="mt-6 max-w-3xl text-base leading-8 text-muted">{project.description}</p><div className="mt-6 flex gap-3 rounded-xl bg-background p-4 text-sm font-semibold leading-6"><CheckCircle2 size={19} className="mt-0.5 shrink-0 text-teal" /><span>{project.outcome}</span></div><div className="mt-6 flex flex-wrap gap-2">{project.tags.map((tag) => <span key={tag} className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold text-muted">{tag}</span>)}</div></div>
+          </article>)}</div>
+        </div></section>
+        <Contact />
+      </main>
       <Footer />
     </>
   );
