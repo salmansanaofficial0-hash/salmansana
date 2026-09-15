@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUpRight, BriefcaseBusiness, GraduationCap, MapPin } from "lucide-react";
-import heroPhoto from "@/assets/hero-photo.jpg";
+import heroPhoto from "@/assets/salman-portrait.jpg";
 import { useSiteContent } from "@/lib/site-content";
 
 const Hero = () => {
@@ -28,13 +28,16 @@ const Hero = () => {
         </div>
 
         <div className="relative mx-auto w-full max-w-[470px] lg:mx-0 lg:ml-auto">
+          <div className="absolute -right-8 -top-10 hidden font-display text-[7rem] font-black leading-none text-primary/[.07] sm:block" aria-hidden="true">01</div>
           <div className="absolute -inset-5 rotate-3 rounded-[2.5rem] bg-primary" />
           <div className="absolute -inset-5 -rotate-3 rounded-[2.5rem] border-2 border-ink/20 bg-gold" />
           <div className="glass-card relative overflow-hidden rounded-[2rem] p-3">
             <div className="relative overflow-hidden rounded-[1.4rem] bg-navy">
-              <img src={heroPhoto} alt="Salman Sana" className="h-[480px] w-full object-cover object-top grayscale-[15%] transition duration-700 hover:scale-[1.025] hover:grayscale-0 md:h-[570px]" />
+              <img src={heroPhoto} alt="Portrait of Salman Sana" className="h-[480px] w-full object-cover object-[center_18%] saturate-[.9] transition duration-700 hover:scale-[1.025] hover:saturate-100 md:h-[570px]" />
+              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/20" />
               <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="mb-2 text-[.6rem] font-extrabold uppercase tracking-[.24em] text-yellow-300">Portrait · Turbat</p>
                 <p className="font-display text-2xl font-extrabold tracking-[-.04em]">{hero.title}</p>
                 <p className="mt-1 text-sm text-white/60">{hero.subtitle.split("\n")[0]}</p>
               </div>
