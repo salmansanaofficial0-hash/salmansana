@@ -1,159 +1,41 @@
+import { Helmet } from "react-helmet";
+import { ArrowUpRight, BadgeCheck, Building2, Target, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet";
+import Contact from "@/components/Contact";
+import aboutPhoto from "@/assets/about-main.jpg";
 
-const About = () => {
-  return (
-    <>
-      <Helmet>
-        <title>About Salman Sana | BBA Student, Finance & Marketing Specialist</title>
-        <meta
-          name="description"
-          content="Learn about Salman Sana, a BBA student specializing in Finance and Marketing at University of Turbat. Discover my skills, experience, and passion for financial analysis and market strategy."
-        />
-        <meta name="keywords" content="Salman Sana, BBA Student, Finance, Marketing, University of Turbat, Business Analysis" />
-        <link rel="canonical" href="https://www.salmansana.me/about" />
-      </Helmet>
-      <Navbar />
-      <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="py-20 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-foreground">
-              About Me
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm Salman Sana, a dedicated BBA student at the University of Turbat, Balochistan, 
-              specializing in Finance and Marketing. My passion lies in understanding market dynamics, 
-              financial planning, and developing business strategies that drive growth.
-            </p>
-          </div>
-        </section>
+const roles = [
+  { title: "Finance Secretary", organization: "Let’s Uplift Balochistan", note: "Supporting responsible coordination and youth-centered community work." },
+  { title: "Director of Finance", organization: "Youth International Council", note: "Contributing financial thinking to an international youth platform." },
+  { title: "Founder / Product Lead", organization: "Karbaar", note: "Developing an online-to-offline discovery model for local commerce." },
+];
 
-        {/* Background Section */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold mb-8 text-foreground">Professional Background</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-primary">Education</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Currently pursuing a Bachelor of Business Administration (BBA) with specialization in 
-                Finance and Marketing at the University of Turbat. My academic journey has equipped me 
-                with strong analytical skills and a comprehensive understanding of modern business practices.
-              </p>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>✓ Financial Analysis & Planning</li>
-                <li>✓ Market Research & Strategy</li>
-                <li>✓ Business Development</li>
-                <li>✓ Digital Marketing</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-primary">Core Competencies</h3>
-              <div className="space-y-3">
-                <div className="bg-card p-4 rounded-lg border border-border">
-                  <p className="font-semibold text-foreground">Financial Analysis</p>
-                  <p className="text-sm text-muted-foreground">Proficient in analyzing financial statements and market trends</p>
-                </div>
-                <div className="bg-card p-4 rounded-lg border border-border">
-                  <p className="font-semibold text-foreground">Marketing Strategy</p>
-                  <p className="text-sm text-muted-foreground">Developing data-driven marketing campaigns and strategies</p>
-                </div>
-                <div className="bg-card p-4 rounded-lg border border-border">
-                  <p className="font-semibold text-foreground">Business Planning</p>
-                  <p className="text-sm text-muted-foreground">Creating comprehensive business plans and financial models</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+const values = [
+  { icon: Target, title: "Useful over impressive", text: "The strongest idea is the one that solves a real problem clearly." },
+  { icon: Users, title: "People before process", text: "Good business decisions begin with listening to the people affected by them." },
+  { icon: BadgeCheck, title: "Credibility through action", text: "Consistency, responsibility and honest work build a reputation over time." },
+];
 
-        {/* Skills & Expertise */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold mb-8 text-foreground">Skills & Expertise</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-bold mb-4 text-primary">Finance</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>• Financial Planning & Analysis</li>
-                <li>• Investment Analysis</li>
-                <li>• Budget Management</li>
-                <li>• Financial Modeling</li>
-                <li>• Risk Assessment</li>
-              </ul>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-bold mb-4 text-primary">Marketing</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>• Market Research</li>
-                <li>• Brand Strategy</li>
-                <li>• Digital Marketing</li>
-                <li>• Consumer Behavior</li>
-                <li>• Campaign Planning</li>
-              </ul>
-            </div>
-            <div className="bg-card p-6 rounded-lg border border-border">
-              <h3 className="text-lg font-bold mb-4 text-primary">Business</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>• Business Analysis</li>
-                <li>• Strategic Planning</li>
-                <li>• Project Management</li>
-                <li>• Data Analysis</li>
-                <li>• Business Development</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+const AboutPage = () => (
+  <>
+    <Helmet><title>About Salman Sana | Finance, Marketing & Youth Leadership</title><meta name="description" content="Meet Salman Sana, a BBA student at the University of Turbat building at the intersection of finance, marketing, technology and youth leadership." /><link rel="canonical" href="https://www.salmansana.me/about" /></Helmet>
+    <Navbar />
+    <main>
+      <section className="page-hero noise"><div className="grid-lines absolute inset-0 opacity-10" /><div className="site-container relative"><p className="page-kicker">About Salman</p><h1 className="page-title">Curious by nature.<br /><span className="text-yellow-300">Grounded in purpose.</span></h1><p className="page-lead">I&apos;m learning how finance, marketing and technology can work together to solve practical problems and create opportunities in Balochistan and beyond.</p></div></section>
 
-        {/* Vision & Goals */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold mb-8 text-foreground">Vision & Goals</h2>
-          <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-lg border border-border">
-            <p className="text-lg text-foreground leading-relaxed mb-6">
-              My vision is to become a strategic business leader who bridges the gap between finance and marketing, 
-              creating value for organizations through insightful analysis and innovative strategies. I'm committed to:
-            </p>
-            <ul className="grid md:grid-cols-2 gap-4">
-              <li className="flex items-start gap-3">
-                <span className="text-primary font-bold mt-1">→</span>
-                <span className="text-foreground">Building expertise in financial and market analysis</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-primary font-bold mt-1">→</span>
-                <span className="text-foreground">Developing innovative business solutions</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-primary font-bold mt-1">→</span>
-                <span className="text-foreground">Contributing to business growth and profitability</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-primary font-bold mt-1">→</span>
-                <span className="text-foreground">Continuous learning and professional development</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+      <section className="section-space"><div className="site-container grid items-center gap-12 lg:grid-cols-[.86fr_1.14fr] lg:gap-20">
+        <div className="relative"><div className="absolute -inset-4 rotate-2 rounded-[2rem] bg-gold" /><img src={aboutPhoto} alt="Salman Sana at a professional event" className="relative h-[520px] w-full rounded-[1.6rem] object-cover" /></div>
+        <div><span className="eyebrow">My story</span><h2 className="section-title mt-6">A business student who learns by building.</h2><div className="mt-7 space-y-5 body-copy"><p>I study Business Administration at the University of Turbat, with a focus on Finance and Marketing. I&apos;m interested in the point where careful analysis becomes a useful decision—and where a good idea becomes something people can actually use.</p><p>Outside the classroom, I contribute to youth organizations, build digital projects, explore financial markets and turn academic concepts into presentations, products and practical experiments.</p><p>My goal is not to claim expertise too early. It is to keep earning it: through disciplined learning, thoughtful collaboration and work that creates measurable value.</p></div><a href="/#contact" className="primary-button mt-9">Start a conversation <ArrowUpRight size={17} /></a></div>
+      </div></section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-display font-bold mb-6 text-foreground">
-            Ready to Connect?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            I'm open to internship opportunities, collaborations, and conversations about finance, 
-            marketing, and business strategy. Let's connect!
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            Get In Touch
-          </a>
-        </section>
-      </div>
-      <Footer />
-    </>
-  );
-};
+      <section className="section-space border-y border-border bg-[#eef0f7]"><div className="site-container"><span className="eyebrow">Leadership & initiatives</span><h2 className="section-title mt-6 max-w-3xl">Responsibility is where learning becomes real.</h2><div className="mt-12 grid gap-4 lg:grid-cols-3">{roles.map((role, index) => <article key={role.organization} className="outline-card rounded-[1.5rem] p-7"><div className="flex items-center justify-between"><Building2 className="text-primary" size={23} /><span className="text-xs font-extrabold text-border2">0{index + 1}</span></div><h3 className="mt-10 font-display text-xl font-extrabold">{role.title}</h3><p className="mt-1 text-sm font-bold text-primary">{role.organization}</p><p className="mt-4 text-sm leading-7 text-muted">{role.note}</p></article>)}</div></div></section>
 
-export default About;
+      <section className="section-space"><div className="site-container"><div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr]"><div><span className="eyebrow">Working principles</span><h2 className="section-title mt-6">How I approach the work.</h2></div><div className="space-y-3">{values.map(({ icon: Icon, title, text }, index) => <article key={title} className="grid grid-cols-[54px_1fr] items-start gap-5 rounded-2xl border border-border bg-card p-5"><div className={`grid h-[54px] w-[54px] place-items-center rounded-xl ${index === 0 ? "bg-amber-light text-amber" : index === 1 ? "bg-teal-light text-teal" : "bg-blue-light text-primary"}`}><Icon size={21} /></div><div><h3 className="font-display text-lg font-extrabold">{title}</h3><p className="mt-2 text-sm leading-7 text-muted">{text}</p></div></article>)}</div></div></div></section>
+      <Contact />
+    </main>
+    <Footer />
+  </>
+);
+
+export default AboutPage;

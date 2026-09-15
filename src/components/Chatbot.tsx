@@ -22,6 +22,10 @@ const Chatbot = () => {
   const send = async () => {
     const text = input.trim();
     if (!text || loading) return;
+    if (text.length > 800) {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Please keep your message under 800 characters." }]);
+      return;
+    }
     const userMsg: Msg = { role: "user", content: text };
     setInput("");
     setMessages((prev) => [...prev, userMsg]);
@@ -34,7 +38,7 @@ const Chatbot = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ messages: [...messages, userMsg] }),
+        body: JSON.stringify({ messages: [...messages, userMsg].slice(-12) }),
       });
 
       if (!resp.ok || !resp.body) throw new Error("Failed");
@@ -75,7 +79,9 @@ const Chatbot = () => {
               assistantText += content;
               updateAssistant(assistantText);
             }
-          } catch {}
+          } catch {
+            continue;
+          }
         }
       }
     } catch {
@@ -145,6 +151,7 @@ const Chatbot = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
               placeholder="Type a message..."
+              maxLength={800}
               className="flex-1 bg-card border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-blue-mid"
             />
             <button

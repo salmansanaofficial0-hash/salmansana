@@ -3,14 +3,16 @@ import { useSiteContent } from "@/lib/site-content";
 const MetricsBar = () => {
   const { metrics } = useSiteContent();
   return (
-  <div className="bg-ink grid grid-cols-2 md:grid-cols-4">
-    {metrics.map((m, i) => (
-      <div key={i} className="py-8 px-6 text-center border-r border-primary-foreground/[0.07] last:border-r-0">
-        <div className="font-display text-5xl font-bold text-primary-foreground tracking-[-0.04em] leading-none mb-1.5">{m.num}</div>
-        <div className="text-[0.72rem] text-primary-foreground/40 uppercase tracking-[0.12em] font-medium">{m.label}</div>
+    <section className="relative bg-navy text-white" aria-label="Profile highlights">
+      <div className="site-container grid grid-cols-2 py-3 md:grid-cols-4">
+        {metrics.map((metric, index) => (
+          <div key={`${metric.label}-${index}`} className="border-white/10 px-3 py-7 text-center even:border-l md:border-l md:first:border-l-0 md:px-8 md:py-10">
+            <p className="font-display text-3xl font-extrabold tracking-[-.06em] text-yellow-300 md:text-5xl">{metric.num}</p>
+            <p className="mt-2 text-[.65rem] font-bold uppercase tracking-[.16em] text-white/45">{metric.label}</p>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </section>
   );
 };
 

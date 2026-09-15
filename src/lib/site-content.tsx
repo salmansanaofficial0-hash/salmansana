@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export type SiteContent = {
@@ -10,7 +10,6 @@ export type SiteContent = {
   };
   metrics: Array<{ num: string; label: string }>;
   contact: {
-    phone: string;
     email: string;
     location: string;
     linkedin: string;
@@ -31,7 +30,6 @@ export const defaultSiteContent: SiteContent = {
     { num: "∞", label: "Growth Mindset" },
   ],
   contact: {
-    phone: "0343 835 9055",
     email: "salmansanajan@gmail.com",
     location: "Turbat, Balochistan, Pakistan",
     linkedin: "https://www.linkedin.com/in/salman-sana-/",
@@ -50,7 +48,9 @@ const mergeContent = (value: unknown): SiteContent => {
   };
 };
 
-export const useSiteContent = () => {
+const SiteContentContext = createContext<SiteContent>(defaultSiteContent);
+
+export const SiteContentProvider = ({ children }: { children: ReactNode }) => {
   const [content, setContent] = useState<SiteContent>(defaultSiteContent);
 
   useEffect(() => {
@@ -59,7 +59,9 @@ export const useSiteContent = () => {
     });
   }, []);
 
-  return content;
+  return <SiteContentContext.Provider value={content}>{children}</SiteContentContext.Provider>;
 };
+
+export const useSiteContent = () => useContext(SiteContentContext);
 
 export { mergeContent };

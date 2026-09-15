@@ -1,80 +1,74 @@
-import { useState } from "react";
-import { Linkedin, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-const navItems = ["About", "Skills", "Education", "Certificates", "Contact"];
+const navigation = [
+  { label: "About", to: "/about" },
+  { label: "Work", to: "/portfolio" },
+  { label: "Insights", to: "/blog" },
+  { label: "Credentials", to: "/#certificates" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const darkTop = location.pathname !== "/" && !scrolled;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[200] bg-background/95 backdrop-blur-[20px] border-b border-border">
-      <div className="flex justify-between items-center px-[5%] h-[70px]">
-        <a href="#" className="no-underline flex items-center">
-          <svg className="h-[32px] sm:h-[38px] w-auto" viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="44" height="44" rx="10" fill="hsl(var(--ink))"/>
-            <path d="M10 14 Q10 10 14 10 L30 10 Q34 10 34 14 Q34 18 30 19 L14 25 Q10 26 10 30 Q10 34 14 34 L30 34 Q34 34 34 30"
-                  fill="none" stroke="#ffffff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="37" cy="37" r="2.5" fill="hsl(var(--blue-mid))"/>
-            <text x="54" y="19" fontFamily="'Cormorant Garamond', Georgia, serif" fontSize="18" fontWeight="700" fill="hsl(var(--ink))" letterSpacing="-0.5">Salman</text>
-            <text x="54" y="38" fontFamily="'Plus Jakarta Sans', sans-serif" fontSize="11.5" fontWeight="600" fill="hsl(var(--muted))" letterSpacing="2.5">SANA</text>
-            <line x1="132" y1="10" x2="132" y2="34" stroke="hsl(var(--border))" strokeWidth="1"/>
-            <text x="140" y="20" fontFamily="'Plus Jakarta Sans', sans-serif" fontSize="8.5" fontWeight="700" fill="hsl(var(--blue-mid))" letterSpacing="1.5">BBA STUDENT</text>
-            <text x="140" y="33" fontFamily="'Plus Jakarta Sans', sans-serif" fontSize="8" fontWeight="500" fill="hsl(var(--muted))" letterSpacing="0.5">Finance · Marketing</text>
-          </svg>
-        </a>
+    <header className={`fixed inset-x-0 top-0 z-[200] transition-all duration-300 ${scrolled ? "py-3" : "py-5"}`}>
+      <div className={`site-container flex h-16 items-center justify-between rounded-full border px-4 transition-all duration-300 sm:px-5 ${scrolled ? "border-border bg-background/90 shadow-[0_10px_35px_rgba(15,23,42,.09)] backdrop-blur-xl" : darkTop ? "border-white/10 bg-white/[.04] text-white backdrop-blur-sm" : "border-transparent bg-transparent"}`}>
+        <Link to="/" className="group flex items-center gap-3" aria-label="Salman Sana home">
+          <span className={`grid h-10 w-10 place-items-center rounded-full text-sm font-extrabold transition group-hover:rotate-6 group-hover:bg-primary group-hover:text-white ${darkTop ? "bg-gold text-ink" : "bg-ink text-white"}`}>SS</span>
+          <span className="hidden sm:block">
+            <span className="block font-display text-sm font-extrabold leading-none tracking-[-.03em]">SALMAN SANA</span>
+            <span className="mt-1 block text-[0.6rem] font-bold uppercase tracking-[.2em] text-muted">Finance × Marketing</span>
+          </span>
+        </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {navItems.map(item => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="no-underline text-muted text-[0.82rem] font-medium px-3.5 py-1.5 rounded-lg transition-all hover:text-foreground hover:bg-card tracking-tight">
-              {item}
-            </a>
-          ))}
-        </div>
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+          {navigation.map((item) => {
+            const active = location.pathname === item.to;
+            return <Link key={item.label} to={item.to} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${active ? darkTop ? "bg-white text-ink" : "bg-ink text-white" : darkTop ? "text-white/60 hover:bg-white/10 hover:text-white" : "text-muted hover:bg-white hover:text-foreground"}`}>{item.label}</Link>;
+          })}
+        </nav>
 
         <div className="flex items-center gap-2">
-          <a href="https://www.linkedin.com/in/salman-sana-/" target="_blank" rel="noopener noreferrer"
-             className="hidden sm:inline-flex ml-2 bg-ink text-primary-foreground px-5 py-2 rounded-full no-underline text-[0.82rem] font-semibold tracking-wide transition-all border-[1.5px] border-ink items-center gap-1.5 hover:bg-blue-mid hover:border-blue-mid hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(37,99,235,0.25)]">
-            <Linkedin size={13} />
-            LinkedIn
+          <a href="/#contact" className="hidden items-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-extrabold uppercase tracking-[.12em] text-ink transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex">
+            Let&apos;s talk <ArrowUpRight size={15} />
           </a>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-foreground hover:bg-card transition-colors"
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
+          <button onClick={() => setOpen((value) => !value)} className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-background border-t border-border px-[5%] py-4 space-y-1 animate-slide-up">
-          {navItems.map(item => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setOpen(false)}
-              className="block no-underline text-foreground text-[0.92rem] font-medium px-4 py-3 rounded-xl transition-all hover:bg-card"
-            >
-              {item}
-            </a>
-          ))}
-          <a
-            href="https://www.linkedin.com/in/salman-sana-/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary text-[0.92rem] font-semibold px-4 py-3 rounded-xl hover:bg-card transition-all no-underline"
-          >
-            <Linkedin size={16} />
-            LinkedIn Profile
-          </a>
+        <div className="fixed inset-0 top-0 -z-10 bg-navy px-6 pb-10 pt-28 text-white lg:hidden">
+          <nav className="mx-auto flex h-full max-w-lg flex-col justify-center" aria-label="Mobile navigation">
+            {navigation.map((item, index) => (
+              <Link key={item.label} to={item.to} className="flex items-center justify-between border-b border-white/10 py-5 font-display text-3xl font-extrabold tracking-[-.04em]">
+                <span><span className="mr-4 text-xs text-yellow-300">0{index + 1}</span>{item.label}</span><ArrowUpRight className="text-white/30" />
+              </Link>
+            ))}
+            <a href="/#contact" className="primary-button mt-10 bg-gold text-ink hover:bg-white">Start a conversation <ArrowUpRight size={17} /></a>
+          </nav>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 

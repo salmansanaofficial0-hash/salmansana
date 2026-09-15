@@ -1,67 +1,58 @@
-import { Linkedin } from "lucide-react";
-import heroPhoto from "@/assets/hero-photo.png";
+import { ArrowDown, ArrowUpRight, BriefcaseBusiness, GraduationCap, MapPin } from "lucide-react";
+import heroPhoto from "@/assets/hero-photo.jpg";
 import { useSiteContent } from "@/lib/site-content";
 
 const Hero = () => {
-  const content = useSiteContent();
-  const [firstName, ...lastName] = content.hero.title.split(" ");
+  const { hero } = useSiteContent();
   return (
-  <section id="hero" className="min-h-screen pt-[90px] pb-16 md:pb-20 px-[5%] grid grid-cols-1 md:grid-cols-[1fr_440px] items-center gap-8 md:gap-20 bg-background relative overflow-hidden">
-    <div className="hero-grid-bg absolute inset-0 pointer-events-none" />
-    <div className="hero-vignette absolute inset-0 pointer-events-none" />
-
-    <div className="relative z-[2] order-2 md:order-1">
-      <div className="inline-flex items-center gap-2 bg-teal-light border border-teal/20 text-teal text-[0.76rem] font-bold tracking-[0.08em] uppercase px-4 py-1.5 rounded-full mb-8 animate-slide-up">
-        <div className="w-[7px] h-[7px] rounded-full bg-teal animate-pdot" />
-        {content.hero.availability}
-      </div>
-      <h1 className="font-display text-[clamp(4rem,6.5vw,7.5rem)] font-bold leading-[0.92] tracking-[-0.03em] text-foreground mb-5 animate-slide-up" style={{ animationDelay: '0.07s' }}>
-        {firstName}<br /><em className="italic text-blue-mid">{lastName.join(" ")}</em>
-      </h1>
-      <p className="text-[1.05rem] font-medium text-muted mb-6 leading-relaxed animate-slide-up" style={{ animationDelay: '0.14s' }}>
-        {content.hero.subtitle.split("\n").map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}
-      </p>
-      <p className="text-[0.97rem] text-muted leading-[1.85] max-w-[500px] mb-10 animate-slide-up" style={{ animationDelay: '0.21s' }}>
-        {content.hero.description}
-      </p>
-      <div className="flex gap-3 flex-wrap animate-slide-up" style={{ animationDelay: '0.28s' }}>
-        <a href="https://www.linkedin.com/in/salman-sana-/" target="_blank" rel="noopener noreferrer"
-           className="inline-flex items-center gap-2 bg-ink text-primary-foreground py-3.5 px-8 rounded-full no-underline text-[0.88rem] font-bold tracking-wide transition-all border-[1.5px] border-ink hover:bg-blue-mid hover:border-blue-mid hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(37,99,235,0.3)]">
-          <Linkedin size={15} />
-          LinkedIn Profile
-        </a>
-        <a href="#contact"
-           className="inline-flex items-center gap-2 bg-transparent text-foreground py-3.5 px-8 rounded-full border-[1.5px] border-border2 no-underline text-[0.88rem] font-bold tracking-wide transition-all hover:border-foreground hover:-translate-y-0.5">
-          Get in Touch →
-        </a>
-      </div>
-    </div>
-
-    <div className="relative z-[2] animate-slide-up order-1 md:order-2 flex justify-center" style={{ animationDelay: '0.1s' }}>
-      <div className="relative">
-        <div className="relative bg-background rounded-[28px] border border-border overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.03),0_12px_40px_rgba(0,0,0,0.08),0_40px_80px_rgba(0,0,0,0.06)]">
-          <img src={heroPhoto} alt="Salman Sana - BBA Student Finance and Marketing University of Turbat" className="w-full h-[320px] sm:h-[400px] md:h-[460px] object-cover object-[center_top] block brightness-[1.04] contrast-[1.06] saturate-[1.1]" />
-          <div className="py-4 px-5 flex items-center justify-between border-t border-border bg-background">
-            <div>
-              <div className="text-[0.92rem] font-bold text-foreground tracking-tight">Salman Sana</div>
-              <div className="text-[0.76rem] text-muted mt-px">Finance &amp; Marketing · UOT</div>
-            </div>
-            <div className="text-[0.72rem] font-bold tracking-wide bg-blue-light text-primary px-3 py-1 rounded-full border border-primary/20 whitespace-nowrap">
-              4th Semester · BBA
-            </div>
+    <section id="hero" className="hero-mesh noise relative min-h-[920px] overflow-hidden pt-32 md:min-h-screen md:pt-28">
+      <div className="grid-lines absolute inset-0 opacity-60" />
+      <div className="site-container relative grid min-h-[780px] items-center gap-12 pb-20 pt-8 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 lg:py-16">
+        <div className="relative z-10">
+          <div className="animate-rise mb-8 inline-flex items-center gap-3 rounded-full border border-emerald-600/20 bg-emerald-50/80 px-4 py-2 text-[0.7rem] font-extrabold uppercase tracking-[.16em] text-emerald-800 backdrop-blur">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pdot" />{hero.availability}
+          </div>
+          <p className="animate-rise mb-5 text-sm font-bold uppercase tracking-[.24em] text-primary" style={{ animationDelay: ".05s" }}>{hero.title} · Finance × Marketing</p>
+          <h1 className="display-title animate-rise max-w-[790px]" style={{ animationDelay: ".1s" }}>
+            Building ideas where <span className="relative whitespace-nowrap text-primary">finance<span className="absolute -bottom-1 left-0 h-2 w-full -rotate-1 rounded-full bg-gold/70 -z-10" /></span> meets market reality.
+          </h1>
+          <p className="animate-rise mt-7 max-w-[640px] text-base leading-8 text-muted md:text-lg" style={{ animationDelay: ".16s" }}>{hero.description}</p>
+          <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: ".22s" }}>
+            <a href="/portfolio" className="primary-button">Explore my work <ArrowUpRight size={17} /></a>
+            <a href="#contact" className="secondary-button">Start a conversation</a>
+          </div>
+          <div className="animate-rise mt-12 flex flex-wrap gap-x-7 gap-y-3 text-xs font-semibold text-muted" style={{ animationDelay: ".28s" }}>
+            <span className="flex items-center gap-2"><GraduationCap size={16} className="text-primary" /> BBA, University of Turbat</span>
+            <span className="flex items-center gap-2"><MapPin size={16} className="text-primary" /> Balochistan, Pakistan</span>
           </div>
         </div>
-        <div className="hidden md:block absolute -top-4 -left-10 bg-background border border-border rounded-xl px-4 py-3 shadow-[0_4px_16px_rgba(0,0,0,0.09)] animate-float">
-          <div className="text-[0.64rem] text-muted uppercase tracking-[0.1em] mb-0.5 font-medium">University</div>
-          <div className="text-[0.88rem] font-extrabold text-foreground tracking-tight">UOT Turbat</div>
-        </div>
-        <div className="hidden md:block absolute bottom-[76px] -right-11 bg-background border border-border rounded-xl px-4 py-3 shadow-[0_4px_16px_rgba(0,0,0,0.09)] animate-float-delayed">
-          <div className="text-[0.64rem] text-muted uppercase tracking-[0.1em] mb-0.5 font-medium">Specialization</div>
-          <div className="text-[0.82rem] font-extrabold text-primary tracking-tight">Finance &amp; Mktg</div>
+
+        <div className="relative mx-auto w-full max-w-[470px] lg:mx-0 lg:ml-auto">
+          <div className="absolute -inset-5 rotate-3 rounded-[2.5rem] bg-primary" />
+          <div className="absolute -inset-5 -rotate-3 rounded-[2.5rem] border-2 border-ink/20 bg-gold" />
+          <div className="glass-card relative overflow-hidden rounded-[2rem] p-3">
+            <div className="relative overflow-hidden rounded-[1.4rem] bg-navy">
+              <img src={heroPhoto} alt="Salman Sana" className="h-[480px] w-full object-cover object-top grayscale-[15%] transition duration-700 hover:scale-[1.025] hover:grayscale-0 md:h-[570px]" />
+              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="font-display text-2xl font-extrabold tracking-[-.04em]">{hero.title}</p>
+                <p className="mt-1 text-sm text-white/60">{hero.subtitle.split("\n")[0]}</p>
+              </div>
+            </div>
+          </div>
+          <div className="animate-float absolute -left-6 top-16 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur sm:-left-14">
+            <BriefcaseBusiness className="mb-3 text-primary" size={22} />
+            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-muted">Current focus</p>
+            <p className="mt-1 text-sm font-extrabold">Karbaar.app</p>
+          </div>
+          <div className="absolute -bottom-5 -right-2 rounded-2xl bg-ink p-5 text-white shadow-2xl sm:-right-8">
+            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-yellow-300">Working at the intersection</p>
+            <p className="mt-2 max-w-[180px] text-sm font-bold leading-5">Strategy, technology and community impact.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+      <a href="#about" className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[.65rem] font-bold uppercase tracking-[.2em] text-muted lg:flex">Discover more <ArrowDown size={15} /></a>
+    </section>
   );
 };
 

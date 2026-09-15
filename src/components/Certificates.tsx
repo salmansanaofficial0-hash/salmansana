@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, Award, Calendar, Building2, Plus, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import type { Session } from "@supabase/supabase-js";
 
 interface Certificate {
   id: string;
@@ -122,12 +123,17 @@ const Certificates = () => {
 
   useEffect(() => {
     fetchCertificates();
-    // Check if user is logged in (admin)
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setIsAdmin(!!session);
-    });
+    const checkAdmin = async (session: Session | null) => {
+      if (!session?.user) {
+        setIsAdmin(false);
+        return;
+      }
+      const { data, error } = await supabase.from("admin_users").select("user_id").eq("user_id", session.user.id).maybeSingle();
+      setIsAdmin(!error && !!data);
+    };
+    supabase.auth.getSession().then(({ data: { session } }) => checkAdmin(session));
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(!!session);
+      void checkAdmin(session);
     });
     return () => subscription.unsubscribe();
   }, []);
@@ -175,32 +181,44 @@ const Certificates = () => {
         date_issued: dateIssued || null,
         image_url: urlData.publicUrl,
       });
-      if (insertError) throw insertError;
+      if (insertError) {
+        await supabase.storage.from("certificates").remove([fileName]);
+        throw insertError;
+      }
 
       toast.success("Certificate uploaded!");
       setTitle(""); setIssuer(""); setDateIssued(""); setSelectedFile(null); setPreview(null); setShowUpload(false);
       fetchCertificates();
-    } catch (err: any) {
-      toast.error(err.message || "Upload failed");
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Upload failed");
     } finally {
       setUploading(false);
     }
   };
 
   const handleDelete = async (id: string, imageUrl: string) => {
-    const fileName = imageUrl.split("/").pop();
-    if (fileName) await supabase.storage.from("certificates").remove([fileName]);
-    await supabase.from("certificates").delete().eq("id", id);
-    toast.success("Certificate removed");
-    fetchCertificates();
+    try {
+      const { error: deleteError } = await supabase.from("certificates").delete().eq("id", id);
+      if (deleteError) throw deleteError;
+      const fileName = imageUrl.split("/").pop()?.split("?")[0];
+      if (fileName) {
+        const { error: storageError } = await supabase.storage.from("certificates").remove([fileName]);
+        if (storageError) console.warn("Certificate record removed, but its image could not be deleted", storageError);
+      }
+      toast.success("Certificate removed");
+      await fetchCertificates();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Certificate could not be removed");
+    }
   };
 
   return (
-    <section id="certificates" className="py-28 px-[5%] bg-card" ref={sectionRef}>
+    <section id="certificates" className="section-space bg-[#eef0f7]" ref={sectionRef}>
+      <div className="site-container">
       <div className="text-center max-w-[560px] mx-auto mb-14">
-        <div className="text-[0.73rem] font-bold uppercase tracking-[0.16em] text-blue-mid mb-3">Achievements</div>
-        <h2 className="font-display text-[clamp(2.2rem,3.5vw,3.2rem)] font-bold leading-[1.08] tracking-[-0.03em] text-foreground mb-4">
-          Certificates &amp; <em className="italic text-blue-mid">Awards</em>
+        <div className="eyebrow mb-5">Credentials</div>
+        <h2 className="section-title text-foreground mb-4">
+          Proof of progress, one course at a time.
         </h2>
         <p className="text-[0.97rem] text-muted leading-relaxed">Professional certifications and academic achievements earned along the way.</p>
       </div>
@@ -296,7 +314,7 @@ const Certificates = () => {
                     <ExternalLink size={12} /> View original PDF
                   </a>
                 )}
-                {isAdmin && (
+                {isAdmin && cert.image_url.includes("/storage/v1/object/public/certificates/") && (
                   <button onClick={() => handleDelete(cert.id, cert.image_url)}
                     className="mt-3 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-rose hover:text-destructive transition-colors">
                     <Trash2 size={12} /> Remove
@@ -324,6 +342,7 @@ const Certificates = () => {
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 };

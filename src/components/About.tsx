@@ -1,51 +1,36 @@
-import { useEffect, useRef } from "react";
-const tags = [
-  { label: "Finance", cls: "text-primary border-primary/20 bg-blue-light" },
-  { label: "Marketing", cls: "text-teal border-teal/20 bg-teal-light" },
-  { label: "Strategy", cls: "text-violet border-violet/20 bg-violet-light" },
-  { label: "Business Dev", cls: "text-amber border-amber/20 bg-amber-light" },
-  { label: "Market Research", cls: "text-rose border-rose/20 bg-rose-light" },
+import { ArrowUpRight, Compass, LineChart, Megaphone } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const pillars = [
+  { icon: LineChart, title: "Finance", text: "Turning numbers into clear decisions through financial thinking, research and disciplined analysis." },
+  { icon: Megaphone, title: "Marketing", text: "Understanding people, positioning ideas and building communication that earns attention and trust." },
+  { icon: Compass, title: "Leadership", text: "Contributing to youth organizations, coordinating teams and moving shared ideas into action." },
 ];
 
-const About = () => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('opacity-100', 'translate-y-0'); });
-    }, { threshold: 0.07 });
-    ref.current?.querySelectorAll('.reveal-el').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <section id="about" className="py-28 px-[5%] bg-background" ref={ref}>
-      <div className="max-w-3xl mx-auto">
-
-        <div className="reveal-el opacity-0 translate-y-5 transition-all duration-[650ms]" style={{ transitionDelay: '0.08s' }}>
-          <div className="text-[0.73rem] font-bold uppercase tracking-[0.16em] text-blue-mid mb-3">About Me</div>
-          <h2 className="font-display text-[clamp(2.2rem,3.5vw,3.2rem)] font-bold leading-[1.08] tracking-[-0.03em] text-foreground mb-6">
-            Driven by Curiosity,<br /><em className="italic text-blue-mid">Fueled by Ambition</em>
-          </h2>
-          <div className="space-y-4">
-            <p className="text-[0.97rem] text-muted leading-[1.85]">
-              I'm <strong className="text-foreground">Salman Sana</strong>, a passionate BBA student at the <strong className="text-foreground">University of Turbat</strong> with dual specializations in <strong className="text-foreground">Finance</strong> and <strong className="text-foreground">Marketing</strong>. Currently in my 4th semester, I'm building a strong foundation in business strategy, market dynamics, and financial analysis.
-            </p>
-            <p className="text-[0.97rem] text-muted leading-[1.85]">
-              My academic journey has equipped me with analytical thinking and a strategic mindset. I'm eager to apply my knowledge through internships and collaborative projects that create meaningful impact.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-[7px] mt-6">
-            {tags.map(t => (
-              <span key={t.label} className={`text-[0.78rem] font-semibold px-3.5 py-1.5 rounded-full border-[1.5px] transition-all cursor-default ${t.cls}`}>
-                {t.label}
-              </span>
+const About = () => (
+  <section id="about" className="section-space bg-background">
+    <div className="site-container">
+      <div className="grid gap-12 lg:grid-cols-[.82fr_1.18fr] lg:gap-20">
+        <div>
+          <span className="eyebrow">My perspective</span>
+          <h2 className="section-title mt-6">Business is clearer when numbers and people are read together.</h2>
+          <Link to="/about" className="secondary-button mt-8">More about me <ArrowUpRight size={17} /></Link>
+        </div>
+        <div>
+          <p className="body-copy border-l-2 border-gold pl-6 text-lg md:text-xl md:leading-9">I&apos;m Salman Sana, a BBA student at the University of Turbat specializing in Finance and Marketing. I bring classroom learning into practical work—digital products, youth initiatives, research and business concepts designed around real needs.</p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {pillars.map(({ icon: Icon, title, text }, index) => (
+              <article key={title} className="outline-card rounded-2xl p-5">
+                <div className={`mb-8 grid h-11 w-11 place-items-center rounded-xl ${index === 0 ? "bg-indigo-100 text-primary" : index === 1 ? "bg-amber-light text-amber" : "bg-teal-light text-teal"}`}><Icon size={20} /></div>
+                <h3 className="font-display text-lg font-extrabold">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{text}</p>
+              </article>
             ))}
           </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;
