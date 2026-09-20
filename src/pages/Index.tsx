@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MetricsBar from "@/components/MetricsBar";
 import About from "@/components/About";
+import CurrentRole from "@/components/CurrentRole";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import FeaturedWork from "@/components/FeaturedWork";
@@ -16,6 +17,7 @@ const Index = () => (
     <Hero />
     <MetricsBar />
     <About />
+    <CurrentRole />
     <Skills />
     <FeaturedWork />
     <Education />
