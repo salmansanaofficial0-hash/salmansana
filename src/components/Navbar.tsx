@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
   { label: "About", to: "/about" },
+  { label: "Experience", to: "/#experience" },
   { label: "Work", to: "/portfolio" },
   { label: "Insights", to: "/blog" },
   { label: "Credentials", to: "/#certificates" },
@@ -41,8 +42,10 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {navigation.map((item) => {
-            const active = location.pathname === item.to;
-            return <Link key={item.label} to={item.to} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${active ? darkTop ? "bg-white text-ink" : "bg-ink text-white" : darkTop ? "text-white/60 hover:bg-white/10 hover:text-white" : "text-muted hover:bg-white hover:text-foreground"}`}>{item.label}</Link>;
+            const active = item.to.includes("#")
+              ? `${location.pathname}${location.hash}` === item.to
+              : location.pathname === item.to;
+            return <Link key={item.label} to={item.to} className={`rounded-full px-3.5 py-2 text-sm font-semibold transition ${active ? darkTop ? "bg-white text-ink" : "bg-ink text-white" : darkTop ? "text-white/60 hover:bg-white/10 hover:text-white" : "text-muted hover:bg-white hover:text-foreground"}`}>{item.label}</Link>;
           })}
         </nav>
 
