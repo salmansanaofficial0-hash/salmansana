@@ -44,11 +44,16 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="animate-float absolute -left-6 top-16 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur sm:-left-14">
+          <a href="https://www.learnoa.app" target="_blank" rel="noreferrer" className="animate-float absolute left-2 top-16 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur transition hover:bg-white sm:-left-14">
+            <BriefcaseBusiness className="mb-3 text-primary" size={22} />
+            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-muted">Founder &amp; CEO</p>
+            <p className="mt-1 flex items-center gap-2 text-sm font-extrabold">Learnoa <ArrowUpRight size={14} className="text-primary" /></p>
+          </a>
+          <a href="https://karbaar.app" target="_blank" rel="noreferrer" className="absolute right-2 top-64 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur transition hover:bg-white sm:-right-8">
             <BriefcaseBusiness className="mb-3 text-primary" size={22} />
             <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-muted">Current focus</p>
-            <p className="mt-1 text-sm font-extrabold">Karbaar.app</p>
-          </div>
+            <p className="mt-1 flex items-center gap-2 text-sm font-extrabold">Karbaar.app <ArrowUpRight size={14} className="text-primary" /></p>
+          </a>
           <div className="absolute -bottom-5 -right-2 rounded-2xl bg-ink p-5 text-white shadow-2xl sm:-right-8">
             <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-yellow-300">Working at the intersection</p>
             <p className="mt-2 max-w-[180px] text-sm font-bold leading-5">Strategy, technology and community impact.</p>
