@@ -23,6 +23,17 @@ export const projects: Project[] = [
     accent: "from-[#fde68a] to-[#f59e0b]",
   },
   {
+    id: "05",
+    title: "Learnoa",
+    category: "Platform",
+    description: "A digital learning platform bringing courses, digital products and affiliate opportunities together in one place.",
+    outcome: "Founder & CEO — leading the platform's development, brand and learning experience.",
+    tags: ["Digital Learning", "Entrepreneurship", "Affiliate Marketing"],
+    link: "https://www.learnoa.app",
+    linkLabel: "Visit Learnoa",
+    accent: "from-[#c4b5fd] to-[#7c3aed]",
+  },
+  {
     id: "02",
     title: "Internship Intelligence Portal",
     category: "Platform",

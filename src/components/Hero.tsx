@@ -17,6 +17,7 @@ const Hero = () => {
             Building ideas where <span className="relative whitespace-nowrap text-primary">finance<span className="absolute -bottom-1 left-0 h-2 w-full -rotate-1 rounded-full bg-gold/70 -z-10" /></span> meets market reality.
           </h1>
           <p className="animate-rise mt-7 max-w-[640px] text-base leading-8 text-muted md:text-lg" style={{ animationDelay: ".16s" }}>{hero.description}</p>
+          <a href="https://www.learnoa.app" target="_blank" rel="noreferrer" className="animate-rise mt-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-blue-light px-4 py-2 text-sm font-bold text-primary transition hover:bg-primary hover:text-white" style={{ animationDelay: ".19s" }}><BriefcaseBusiness size={16} /> Founder &amp; CEO of Learnoa <ArrowUpRight size={16} /></a>
           <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: ".22s" }}>
             <a href="/portfolio" className="primary-button">Explore my work <ArrowUpRight size={17} /></a>
             <a href="#contact" className="secondary-button">Start a conversation</a>

@@ -17,7 +17,7 @@ const About = () => (
           <Link to="/about" className="secondary-button mt-8">More about me <ArrowUpRight size={17} /></Link>
         </div>
         <div>
-          <p className="body-copy border-l-2 border-gold pl-6 text-lg md:text-xl md:leading-9">I&apos;m Salman Sana, a BBA student at the University of Turbat specializing in Finance and Marketing. I bring classroom learning into practical work—digital products, youth initiatives, research and business concepts designed around real needs.</p>
+          <p className="body-copy border-l-2 border-gold pl-6 text-lg md:text-xl md:leading-9">I&apos;m Salman Sana, a BBA student at the University of Turbat specializing in Finance and Marketing. As Founder &amp; CEO of Learnoa, I&apos;m building a platform for digital courses, digital products and affiliate opportunities. I bring classroom learning into practical work—digital products, youth initiatives, research and business concepts designed around real needs.</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {pillars.map(({ icon: Icon, title, text }, index) => (
               <article key={title} className="outline-card rounded-2xl p-5">
