@@ -12,6 +12,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "06",
+    title: "Inspiration Lab (ilab.pk)",
+    category: "Platform",
+    description: "Developed and manage the official Inspiration Lab website, supporting its digital presence, programs, events and bootcamps.",
+    outcome: "Web developer and website manager — responsible for ongoing development and maintenance.",
+    tags: ["Web Development", "Website Management", "React", "Digital Experience"],
+    link: "https://ilab.pk",
+    linkLabel: "Visit ilab.pk",
+    accent: "from-[#67e8f9] to-[#2563eb]",
+  },
+
+  {
     id: "01",
     title: "Karbaar",
     category: "Product",
