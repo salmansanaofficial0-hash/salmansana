@@ -1,3 +1,4 @@
+import PersonalGallery from "@/components/PersonalGallery";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MetricsBar from "@/components/MetricsBar";
@@ -20,6 +21,7 @@ const Index = () => (
     <CurrentRole />
     <Skills />
     <FeaturedWork />
+    <PersonalGallery />
     <Education />
     <Certificates />
     <Contact />
