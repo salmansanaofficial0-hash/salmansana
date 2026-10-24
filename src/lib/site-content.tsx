@@ -8,6 +8,7 @@ export type SiteContent = {
     subtitle: string;
     description: string;
   };
+  gallery: Array<{ url: string; caption: string; alt: string }>;
   metrics: Array<{ num: string; label: string }>;
   contact: {
     email: string;
@@ -23,6 +24,7 @@ export const defaultSiteContent: SiteContent = {
     subtitle: "BBA Student — Finance & Marketing\nUniversity of Turbat, Balochistan",
     description: "Combining academic knowledge with strategic thinking to create business impact and growth opportunities. Passionate about market analysis, financial concepts, and building meaningful brands.",
   },
+  gallery: [],
   metrics: [
     { num: "4th", label: "Semester" },
     { num: "BBA", label: "Degree Program" },
@@ -43,6 +45,7 @@ const mergeContent = (value: unknown): SiteContent => {
     ...defaultSiteContent,
     ...incoming,
     hero: { ...defaultSiteContent.hero, ...incoming.hero },
+    gallery: Array.isArray(incoming.gallery) ? incoming.gallery.filter((item) => typeof item?.url === "string" && item.url.startsWith("https://")) : [],
     metrics: Array.isArray(incoming.metrics) && incoming.metrics.length === 4 ? incoming.metrics : defaultSiteContent.metrics,
     contact: { ...defaultSiteContent.contact, ...incoming.contact },
   };
