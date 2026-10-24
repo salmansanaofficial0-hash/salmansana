@@ -45,7 +45,7 @@ const mergeContent = (value: unknown): SiteContent => {
     ...defaultSiteContent,
     ...incoming,
     hero: { ...defaultSiteContent.hero, ...incoming.hero },
-    gallery: Array.isArray(incoming.gallery) ? incoming.gallery.filter((item) => typeof item?.url === "string" && /^https:\\/\\//.test(item.url)) : [],
+    gallery: Array.isArray(incoming.gallery) ? incoming.gallery.filter((item) => typeof item?.url === "string" && item.url.startsWith("https://")) : [],
     metrics: Array.isArray(incoming.metrics) && incoming.metrics.length === 4 ? incoming.metrics : defaultSiteContent.metrics,
     contact: { ...defaultSiteContent.contact, ...incoming.contact },
   };
