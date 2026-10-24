@@ -1,0 +1,10 @@
+import { ArrowUpRight, Camera, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useSiteContent } from "@/lib/site-content";
+export default function PersonalGallery() {
+ const { gallery } = useSiteContent();
+ return <section id="gallery" className="section-space bg-[#0b1224] text-white"><div className="site-container">
+  <div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-4 text-xs font-bold uppercase tracking-[.24em] text-cyan-300">Beyond the code</p><h2 className="section-title">Moments, stories <span className="text-cyan-300">& ideas.</span></h2><p className="mt-5 max-w-2xl text-slate-400">A personal space for photographs, lessons, articles and the thoughts shaping my journey.</p></div><Link to="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white"><BookOpen size={17}/> Read articles <ArrowUpRight size={17}/></Link></div>
+  {gallery.length ? <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{gallery.map((item,index)=><figure key={index} className="group overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/5"><div className="aspect-[4/3] overflow-hidden"><img src={item.url} alt={item.alt || item.caption || "Personal gallery photograph"} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-110"/></div><figcaption className="p-5 text-sm font-medium text-slate-300">{item.caption || "A moment worth sharing"}</figcaption></figure>)}</div> : <div className="mt-12 flex min-h-64 flex-col items-center justify-center rounded-[2rem] border border-dashed border-white/20 bg-white/[.03] p-10 text-center"><Camera className="mb-4 text-cyan-300" size={32}/><h3 className="text-xl font-bold">The gallery is coming to life.</h3><p className="mt-2 max-w-md text-sm leading-7 text-slate-400">New photographs and personal stories will appear here. Images can be added from the private admin dashboard.</p></div>}
+ </div></section>;
+}
