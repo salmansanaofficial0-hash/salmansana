@@ -89,6 +89,21 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "volunteering-ai-awareness-session-university-of-turbat",
+    category: "Community & AI",
+    title: "Volunteering for AI Awareness at the University of Turbat",
+    excerpt: "A meaningful experience supporting an AI awareness session organized by BELI, and receiving a certificate of appreciation from the Vice Chancellor of the University of Turbat.",
+    date: "2026",
+    readTime: "3 min read",
+    intro: "I had the opportunity to serve as a volunteer at an Artificial Intelligence (AI) awareness session organized by BELI (beli.org.pk) at the University of Turbat. The session focused on building awareness and understanding of AI, and I was pleased to contribute to this educational initiative as part of the volunteer team.",
+    sections: [
+      { heading: "About the AI awareness session", paragraphs: ["The session was organized by BELI to encourage greater awareness of Artificial Intelligence and its growing relevance to learning, technology and everyday life. Events like this provide valuable opportunities for students and participants to engage with emerging technologies and develop curiosity about how AI can shape the future."] },
+      { heading: "My role as a volunteer", paragraphs: ["I supported the session as a volunteer, contributing my time and effort to help the event take place successfully. This was a community and educational service role, not a claim that I was the organizer or speaker. Working alongside others reinforced the importance of teamwork, responsibility and making technology education more accessible."] },
+      { heading: "Recognition from the Vice Chancellor", paragraphs: ["Following the session, I received a certificate of appreciation for my volunteer contribution, presented by the Vice Chancellor of the University of Turbat. Receiving this recognition was a memorable moment and a reminder of the value of participating in initiatives that promote learning and community engagement."] },
+      { heading: "What this experience means to me", paragraphs: ["The experience strengthened my interest in AI awareness, digital skills and youth participation. I hope to continue supporting opportunities that help students learn about emerging technologies and put their knowledge to practical use."], points: ["Organization: BELI — beli.org.pk", "Event: Artificial Intelligence awareness session", "Venue: University of Turbat", "Role: Volunteer", "Recognition: Certificate of appreciation presented by the Vice Chancellor"] },
+    ],
+  },
+  {
     slug: "financial-markets-beginner-guide",
     category: "Finance",
     title: "Financial markets, explained without the noise",
