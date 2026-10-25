@@ -89,22 +89,6 @@ export type Article = {
 
 export const articles: Article[] = [
   {
-    slug: "volunteering-ai-awareness-session-university-of-turbat",
-    category: "AI & Community",
-    title: "Volunteering at Exploring Artificial Intelligence (AI) Education — University of Turbat",
-    excerpt: "My volunteer experience at the October 16, 2026 AI education session jointly organized by the University of Turbat's Computer Science Department and BELI, followed by recognition from the Vice Chancellor.",
-    date: "October 16, 2026",
-    readTime: "4 min read",
-    intro: "On October 16, 2026, I had the opportunity to contribute as a volunteer to an interactive session titled ‘Exploring Artificial Intelligence (AI) Education’ at the University of Turbat's Smart Classroom. The event was jointly organized by the university's Computer Science Department and the Balochistan Emerging Leaders Initiative (BELI). It explored a timely question: ‘If AI Can Do the Work, What Should Humans Learn?’",
-    sections: [
-      { heading: "Exploring AI education and future human skills", paragraphs: ["Faculty members and students from different departments joined a discussion on how artificial intelligence is changing education, work and the skills people will need in the future. Speakers discussed the growing capabilities of AI systems, including Large Language Models (LLMs) and Natural Language Processing (NLP), alongside the importance of real-world applications, critical thinking, adaptability and responsible use of technology.", "The discussion emphasized treating AI as a collaborative tool rather than simply a competitor. It also highlighted the importance of connecting university education with industry developments, research and practical skills."] },
-      { heading: "Speakers and university leadership", paragraphs: ["Vice Chancellor Prof. Dr. Gul Hasan attended as chief guest. He discussed the university's commitment to IT, AI and skills-based education under the UoT Strategic Plan 2026–2030, and announced a target to complete campus-wide digital automation by the end of December 2026.", "The keynote speakers included Fulbright PhD scholar and UoT faculty member Mukhtar Hussain, Dr. Mazhar Mohsin (joining via video link), Balach Khan, and Head of the Computer Science Department Engr. Bilal-ur-Rehman. The session was moderated by Jansher Ameer, a UoT Computer Science student and Deputy CEO of BELI."] },
-      { heading: "My contribution as a volunteer", paragraphs: ["I was part of the volunteer effort supporting this educational session. Being involved gave me an opportunity to contribute to an initiative connecting students and faculty with conversations about AI, emerging technologies and the human skills that remain essential in an AI-driven world. My role was as a volunteer; I was not a keynote speaker or the event organizer."] },
-      { heading: "Certificate of appreciation", paragraphs: ["I was honored to receive a certificate of appreciation for my volunteer contribution, presented by the Vice Chancellor of the University of Turbat, Prof. Dr. Gul Hasan. This recognition is a meaningful reminder of the importance of community participation, teamwork and making learning opportunities accessible to students."] },
-      { heading: "Event details", paragraphs: ["I value opportunities to support AI awareness and digital education, and I look forward to contributing to more initiatives that encourage students to learn, adapt and use technology responsibly."], points: ["Date: October 16, 2026", "Location: Smart Classroom, University of Turbat", "Session: Exploring Artificial Intelligence (AI) Education", "Central question: If AI Can Do the Work, What Should Humans Learn?", "Organizers: UoT Computer Science Department and Balochistan Emerging Leaders Initiative (BELI)", "My role: Volunteer", "Recognition: Certificate of appreciation presented by Vice Chancellor Prof. Dr. Gul Hasan"] },
-    ],
-  },
-  {
     slug: "financial-markets-beginner-guide",
     category: "Finance",
     title: "Financial markets, explained without the noise",
