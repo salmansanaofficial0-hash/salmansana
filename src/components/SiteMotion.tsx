@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import "@/styles/site-motion.css";
 
 const revealSelector = [
-  ".ref-heading h2", ".ref-work-bar", ".ref-project", ".ref-services > h2",
+  ".ref-certificate-card", ".ref-role-heading", ".ref-heading h2", ".ref-work-bar", ".ref-project", ".ref-services > h2",
   ".ref-service", ".ref-experience-row", ".ref-gallery figure",
   ".ref-contact > h2", ".ref-contact > p", ".ref-contact > a", ".ref-contact footer > a",
   ".ref-secondary main h1", ".ref-secondary main h2", ".ref-secondary main article",

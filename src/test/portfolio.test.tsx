@@ -9,12 +9,18 @@ describe("portfolio experience", () => {
     render(<MemoryRouter initialEntries={["/portfolio"]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><Portfolio /></MemoryRouter>);
     expect(screen.getByRole("heading", { name: "Karbaar" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Digital" }));
-    expect(screen.getByRole("heading", { name: "AI Prompting Masterclass" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Developer" }));
+    expect(screen.getByRole("heading", { name: "Inspiration Lab (ilab.pk)" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Karbaar" })).not.toBeInTheDocument();
 
+    expect(screen.queryByRole("heading", { name: "Learnoa" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Founder" }));
+    expect(screen.getByRole("heading", { name: "Learnoa" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Karbaar" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Inspiration Lab (ilab.pk)" })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "All" }));
-    expect(screen.getAllByRole("article")).toHaveLength(projects.length);
+    expect(screen.getAllByRole("article")).toHaveLength(3);
+    expect(projects.map(p => p.title)).toEqual(["Inspiration Lab (ilab.pk)", "Karbaar", "Learnoa"]);
   });
 
   it("contains complete, uniquely routed articles", () => {
