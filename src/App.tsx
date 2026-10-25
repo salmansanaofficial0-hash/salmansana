@@ -14,6 +14,7 @@ const AboutPage = lazy(() => import("./pages/AboutPage.tsx"));
 const Portfolio = lazy(() => import("./pages/Portfolio.tsx"));
 const Blog = lazy(() => import("./pages/Blog.tsx"));
 const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
+const Credentials = lazy(() => import("./pages/Credentials.tsx"));
 const Admin = lazy(() => import("./pages/Admin.tsx"));
 
 const App = () => (
@@ -27,10 +28,11 @@ const App = () => (
         <Suspense fallback={<div className="grid min-h-screen place-items-center bg-background text-sm font-bold text-muted">Loading page...</div>}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/about" element={<div className="ref-secondary"><AboutPage /></div>} />
+          <Route path="/portfolio" element={<div className="ref-secondary"><Portfolio /></div>} />
+          <Route path="/blog" element={<div className="ref-secondary"><Blog /></div>} />
+          <Route path="/blog/:slug" element={<div className="ref-secondary"><BlogPost /></div>} />
+          <Route path="/credentials" element={<div className="ref-secondary"><Credentials /></div>} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

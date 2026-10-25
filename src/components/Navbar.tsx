@@ -7,7 +7,7 @@ const navigation = [
   { label: "Experience", to: "/#experience" },
   { label: "Work", to: "/portfolio" },
   { label: "Insights", to: "/blog" },
-  { label: "Credentials", to: "/#certificates" },
+  { label: "Credentials", to: "/credentials" },
 ];
 
 const Navbar = () => {
