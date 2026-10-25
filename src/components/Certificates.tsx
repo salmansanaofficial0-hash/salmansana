@@ -213,7 +213,7 @@ const Certificates = () => {
   return (
     <section id="certificates" className="ref-certificates">
       <div className="site-container">
-      <header className="ref-heading"><span aria-hidden="true">RECOGNITION</span><h2>/CERTIFICATES</h2></header>
+      <header className="ref-heading"><span>LEARNING & GROWTH</span><h2>Certificates & recognition.</h2></header>
       <p className="ref-certificates-intro">Professional certifications, learning and achievements.</p>
       {loadError && <p className="ref-certificate-notice" role="status">Saved certificates are shown. Additional uploaded certificates could not load. <button onClick={() => void fetchCertificates()}>Retry</button></p>}
 
