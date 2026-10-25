@@ -14,7 +14,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const darkTop = location.pathname !== "/" && !scrolled;
+  const darkTop = !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -53,7 +53,7 @@ const Navbar = () => {
           <a href="/#contact" className="hidden items-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-extrabold uppercase tracking-[.12em] text-ink transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex">
             Let&apos;s talk <ArrowUpRight size={15} />
           </a>
-          <button onClick={() => setOpen((value) => !value)} className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+          <button onClick={() => setOpen((value) => !value)} className={`grid h-11 w-11 place-items-center rounded-full border lg:hidden ${darkTop ? "border-white/20 bg-white/10 text-white" : "border-border bg-white text-foreground"}`} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>

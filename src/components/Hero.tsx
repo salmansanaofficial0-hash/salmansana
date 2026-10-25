@@ -1,66 +1,51 @@
-import { ArrowDown, ArrowUpRight, BriefcaseBusiness, GraduationCap, MapPin } from "lucide-react";
+import { ArrowDown, ArrowUpRight, BriefcaseBusiness, GraduationCap, MapPin, Sparkles } from "lucide-react";
 import heroPhoto from "@/assets/salman-portrait.jpg";
 import { useSiteContent } from "@/lib/site-content";
+import HeroScene from "@/components/HeroScene";
 
 const Hero = () => {
   const { hero } = useSiteContent();
   return (
-    <section id="hero" className="hero-mesh noise relative min-h-[920px] overflow-hidden pt-32 md:min-h-screen md:pt-28">
-      <div className="grid-lines absolute inset-0 opacity-60" />
-      <div className="site-container relative grid min-h-[780px] items-center gap-12 pb-20 pt-8 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 lg:py-16">
-        <div className="relative z-10">
-          <div className="animate-rise mb-8 inline-flex items-center gap-3 rounded-full border border-emerald-600/20 bg-emerald-50/80 px-4 py-2 text-[0.7rem] font-extrabold uppercase tracking-[.16em] text-emerald-800 backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pdot" />{hero.availability}
+    <section id="hero" className="hero-stage noise relative isolate min-h-[820px] overflow-hidden pt-28 text-white md:min-h-screen md:pt-24">
+      <div className="hero-grid absolute inset-0" aria-hidden="true" />
+      <div className="hero-sun absolute" aria-hidden="true" />
+      <div className="site-container relative z-10 grid min-h-[780px] items-center gap-2 pb-24 pt-8 lg:grid-cols-[.92fr_1.08fr] lg:pb-16 lg:pt-12">
+        <div className="relative z-20 max-w-[660px] py-12 lg:py-0">
+          <div className="animate-rise mb-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[.06] px-4 py-2 text-[.65rem] font-bold uppercase tracking-[.17em] text-white/80 backdrop-blur" style={{ animationDelay: ".04s" }}>
+            <span className="h-2 w-2 rounded-full bg-[#a8f078] animate-pdot" />{hero.availability}
           </div>
-          <p className="animate-rise mb-5 text-sm font-bold uppercase tracking-[.24em] text-primary" style={{ animationDelay: ".05s" }}>{hero.title} · Finance × Marketing</p>
-          <h1 className="display-title animate-rise max-w-[790px]" style={{ animationDelay: ".1s" }}>
-            Building ideas where <span className="relative whitespace-nowrap text-primary">finance<span className="absolute -bottom-1 left-0 h-2 w-full -rotate-1 rounded-full bg-gold/70 -z-10" /></span> meets market reality.
+          <p className="animate-rise mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[.2em] text-[#e9ad66]" style={{ animationDelay: ".08s" }}><Sparkles size={14} /> Finance <span className="text-white/35">×</span> Marketing <span className="text-white/35">×</span> Product</p>
+          <h1 className="hero-title animate-rise" style={{ animationDelay: ".12s" }}>
+            Ideas in <span className="hero-title-accent">motion.</span>
+            <span className="hero-name">I&apos;m {hero.title}.</span>
           </h1>
-          <p className="animate-rise mt-7 max-w-[640px] text-base leading-8 text-muted md:text-lg" style={{ animationDelay: ".16s" }}>{hero.description}</p>
-          <a href="https://www.learnoa.app" target="_blank" rel="noreferrer" className="animate-rise mt-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-blue-light px-4 py-2 text-sm font-bold text-primary transition hover:bg-primary hover:text-white" style={{ animationDelay: ".19s" }}><BriefcaseBusiness size={16} /> Founder &amp; CEO of Learnoa <ArrowUpRight size={16} /></a>
-          <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: ".22s" }}>
-            <a href="/portfolio" className="primary-button">Explore my work <ArrowUpRight size={17} /></a>
-            <a href="#contact" className="secondary-button">Start a conversation</a>
+          <p className="animate-rise mt-7 max-w-[510px] text-base leading-8 text-white/65 md:text-lg" style={{ animationDelay: ".18s" }}>{hero.description}</p>
+          <a href="https://www.learnoa.app" target="_blank" rel="noreferrer" className="animate-rise mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition hover:text-[#f3c47c]" style={{ animationDelay: ".21s" }}><BriefcaseBusiness size={16} className="text-[#e9ad66]" /> Founder &amp; CEO of Learnoa <ArrowUpRight size={15} /></a>
+          <div className="animate-rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: ".25s" }}>
+            <a href="/portfolio" className="hero-primary">Explore my work <ArrowUpRight size={17} /></a>
+            <a href="#contact" className="hero-secondary">Let&apos;s talk</a>
           </div>
-          <div className="animate-rise mt-12 flex flex-wrap gap-x-7 gap-y-3 text-xs font-semibold text-muted" style={{ animationDelay: ".28s" }}>
-            <span className="flex items-center gap-2"><GraduationCap size={16} className="text-primary" /> BBA, University of Turbat</span>
-            <span className="flex items-center gap-2"><MapPin size={16} className="text-primary" /> Balochistan, Pakistan</span>
+          <div className="animate-rise mt-11 flex flex-wrap gap-x-7 gap-y-3 text-xs font-medium text-white/55" style={{ animationDelay: ".31s" }}>
+            <span className="flex items-center gap-2"><GraduationCap size={16} className="text-[#e9ad66]" /> BBA, University of Turbat</span>
+            <span className="flex items-center gap-2"><MapPin size={15} className="text-[#e9ad66]" /> Balochistan, Pakistan</span>
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[470px] lg:mx-0 lg:ml-auto">
-          <div className="absolute -right-8 -top-10 hidden font-display text-[7rem] font-black leading-none text-primary/[.07] sm:block" aria-hidden="true">01</div>
-          <div className="absolute -inset-5 rotate-3 rounded-[2.5rem] bg-primary" />
-          <div className="absolute -inset-5 -rotate-3 rounded-[2.5rem] border-2 border-ink/20 bg-gold" />
-          <div className="glass-card relative overflow-hidden rounded-[2rem] p-3">
-            <div className="relative overflow-hidden rounded-[1.4rem] bg-navy">
-              <img src={heroPhoto} alt="Portrait of Salman Sana" className="h-[480px] w-full object-cover object-[center_18%] saturate-[.9] transition duration-700 hover:scale-[1.025] hover:saturate-100 md:h-[570px]" />
-              <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/20" />
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <p className="mb-2 text-[.6rem] font-extrabold uppercase tracking-[.24em] text-yellow-300">Portrait · Turbat</p>
-                <p className="font-display text-2xl font-extrabold tracking-[-.04em]">{hero.title}</p>
-                <p className="mt-1 text-sm text-white/60">{hero.subtitle.split("\n")[0]}</p>
-              </div>
-            </div>
+        <div className="hero-art relative mx-auto h-[460px] w-full max-w-[620px] sm:h-[570px] lg:-mr-8 lg:h-[700px] lg:max-w-none">
+          <HeroScene />
+          <div className="hero-orbit-label hero-orbit-label-top"><span /> STRATEGY / 01</div>
+          <div className="hero-orbit-label hero-orbit-label-bottom">BUILDING WHAT&apos;S NEXT <ArrowUpRight size={14} /></div>
+          <div className="hero-portrait-wrap" aria-hidden="true">
+            <img src={heroPhoto} alt="" className="hero-portrait" />
           </div>
-          <a href="https://www.learnoa.app" target="_blank" rel="noreferrer" className="animate-float absolute left-2 top-16 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur transition hover:bg-white sm:-left-14">
-            <BriefcaseBusiness className="mb-3 text-primary" size={22} />
-            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-muted">Founder &amp; CEO</p>
-            <p className="mt-1 flex items-center gap-2 text-sm font-extrabold">Learnoa <ArrowUpRight size={14} className="text-primary" /></p>
-          </a>
-          <a href="https://karbaar.app" target="_blank" rel="noreferrer" className="absolute right-2 top-64 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur transition hover:bg-white sm:-right-8">
-            <BriefcaseBusiness className="mb-3 text-primary" size={22} />
-            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-muted">Current focus</p>
-            <p className="mt-1 flex items-center gap-2 text-sm font-extrabold">Karbaar.app <ArrowUpRight size={14} className="text-primary" /></p>
-          </a>
-          <div className="absolute -bottom-5 -right-2 rounded-2xl bg-ink p-5 text-white shadow-2xl sm:-right-8">
-            <p className="text-[.62rem] font-bold uppercase tracking-[.18em] text-yellow-300">Working at the intersection</p>
-            <p className="mt-2 max-w-[180px] text-sm font-bold leading-5">Strategy, technology and community impact.</p>
+          <div className="hero-project-note">
+            <span className="hero-project-index">CURRENTLY BUILDING</span>
+            <span className="hero-project-title">Products with purpose <ArrowUpRight size={14} /></span>
           </div>
+          <div className="hero-coordinate">26°00&apos;N&nbsp; 63°03&apos;E</div>
         </div>
       </div>
-      <a href="#about" className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[.65rem] font-bold uppercase tracking-[.2em] text-muted lg:flex">Discover more <ArrowDown size={15} /></a>
+      <a href="#about" className="hero-scroll absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[.62rem] font-bold uppercase tracking-[.18em] text-white/45 lg:flex">Scroll to explore <ArrowDown size={14} /></a>
     </section>
   );
 };
