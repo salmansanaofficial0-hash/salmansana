@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Linkedin, Mail, Menu, X, Github } from "lucide-react";
 import { Link } from "react-router-dom";
+import HeroPortraitSlideshow from "@/components/HeroPortraitSlideshow";
 import Certificates from "@/components/Certificates";
 import ProjectCards from "@/components/ProjectCards";
 import { projects } from "@/lib/portfolio-data";
@@ -27,7 +28,7 @@ export default function Index() {
         <nav className="ref-nav" aria-label="Main navigation"><a href="#home" aria-label="Back to top"><Availability/></a><div className={`ref-nav-links ${menu ? "is-open" : ""}`}><a href="#work" onClick={()=>setMenu(false)}>Work <small>[{projects.length}]</small></a><a href="#services" onClick={()=>setMenu(false)}>Service <small>[4]</small></a><a href="#experience" onClick={()=>setMenu(false)}>Experience</a><a href="#certificates" onClick={()=>setMenu(false)}>Certificates</a><a href="#contact" onClick={()=>setMenu(false)}>Contact</a></div><a className="ref-pill ref-dark ref-nav-cta" href={`mailto:${contact.email}`}>Let’s Talk <ArrowUpRight size={17}/></a><button className="ref-menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation" aria-expanded={menu}>{menu?<X/>:<Menu/>}</button></nav>
         <h1 className="ref-name"><span>SALMAN</span> SANA</h1>
         <div className="ref-hero-copy"><h2>Developer & Entrepreneur</h2><p>Building digital experiences that connect<br className="ref-desktop"/> people, ideas, and opportunities.</p><a className="ref-pill ref-dark" href="#contact">Let’s collaborate <ArrowUpRight size={18}/></a></div>
-        <img className="ref-portrait" src={portrait} alt="Salman Sana" fetchPriority="high"/>
+        <HeroPortraitSlideshow/>
         <div className="ref-socials">{socials}</div>
       </section>
       <section className="ref-work ref-reveal" id="work">
