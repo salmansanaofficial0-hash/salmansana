@@ -1,5 +1,7 @@
 export type Project = {
   id: string;
+  role: "Founder" | "Developer";
+  preview: string;
   title: string;
   category: "Product" | "Platform" | "Community" | "Digital";
   description: string;
@@ -13,6 +15,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "06",
+    role: "Developer",
+    preview: "/projects/ilab.webp",
     title: "Inspiration Lab (ilab.pk)",
     category: "Platform",
     description: "Developed and manage the official Inspiration Lab website, supporting its digital presence, programs, events and bootcamps.",
@@ -25,6 +29,8 @@ export const projects: Project[] = [
 
   {
     id: "01",
+    role: "Founder",
+    preview: "/projects/karbaar.webp",
     title: "Karbaar",
     category: "Product",
     description: "An online-to-offline product discovery concept that helps buyers find products at nearby physical stores while giving verified sellers a digital storefront.",
@@ -36,6 +42,8 @@ export const projects: Project[] = [
   },
   {
     id: "05",
+    role: "Founder",
+    preview: "/projects/learnoa.webp",
     title: "Learnoa",
     category: "Platform",
     description: "A digital learning platform bringing courses, digital products and affiliate opportunities together in one place.",
@@ -45,35 +53,7 @@ export const projects: Project[] = [
     linkLabel: "Visit Learnoa",
     accent: "from-[#c4b5fd] to-[#7c3aed]",
   },
-  {
-    id: "02",
-    title: "Internship Intelligence Portal",
-    category: "Platform",
-    description: "A student-focused opportunity portal organizing verified internships across technology, design, marketing, and business disciplines.",
-    outcome: "Structured a growing directory of 350+ Pakistan-based and international internship opportunities.",
-    tags: ["Student Access", "Research", "Data Curation"],
-    accent: "from-[#c7d2fe] to-[#6366f1]",
-  },
-  {
-    id: "03",
-    title: "LUB Digital Presence",
-    category: "Community",
-    description: "A professional digital presence for Let's Uplift Balochistan, designed to communicate its mission, partnerships, programs, and youth impact.",
-    outcome: "Turned organizational activities into a clearer public story and more credible online identity.",
-    tags: ["Community", "Content Strategy", "Web Presence"],
-    link: "https://lubm.vercel.app",
-    linkLabel: "View website",
-    accent: "from-[#a7f3d0] to-[#10b981]",
-  },
-  {
-    id: "04",
-    title: "AI Prompting Masterclass",
-    category: "Digital",
-    description: "A practical digital learning product created for freelancers, marketers, and entrepreneurs who want to use AI more effectively.",
-    outcome: "Packaged structured guidance with 100+ ready-to-use prompts for real business workflows.",
-    tags: ["Digital Product", "AI", "Marketing"],
-    accent: "from-[#fecdd3] to-[#f43f5e]",
-  },
+
 ];
 
 export type Article = {

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, Award, Calendar, Building2, Plus, Trash2, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import type { Session } from "@supabase/supabase-js";
 
 interface Certificate {
@@ -108,7 +109,8 @@ const mergeCertificates = (existing: Certificate[]) => {
 };
 
 const Certificates = () => {
-  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  const [certificates, setCertificates] = useState<Certificate[]>(localCertificateExtras);
+  const [loadError, setLoadError] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [title, setTitle] = useState("");
@@ -119,7 +121,6 @@ const Certificates = () => {
   const [viewImage, setViewImage] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchCertificates();
@@ -138,19 +139,16 @@ const Certificates = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('opacity-100', 'translate-y-0'); });
-    }, { threshold: 0.07 });
-    sectionRef.current?.querySelectorAll('.reveal-el').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, [certificates]);
 
   const fetchCertificates = async () => {
-    const { data, error } = await supabase.from("certificates").select("*").order("created_at", { ascending: false });
-    if (error) console.error("Failed to fetch certificates:", error);
-    const merged = data ? mergeCertificates(data) : localCertificateExtras;
-    setCertificates(merged);
+    try {
+      const { data, error } = await supabase.from("certificates").select("*").order("created_at", { ascending: false });
+      if (error) throw error;
+      setCertificates(mergeCertificates(data ?? []));
+      setLoadError(false);
+    } catch {
+      setLoadError(true);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -213,15 +211,11 @@ const Certificates = () => {
   };
 
   return (
-    <section id="certificates" className="section-space bg-[#eef0f7]" ref={sectionRef}>
+    <section id="certificates" className="ref-certificates">
       <div className="site-container">
-      <div className="text-center max-w-[560px] mx-auto mb-14">
-        <div className="eyebrow mb-5">Credentials</div>
-        <h2 className="section-title text-foreground mb-4">
-          Proof of progress, one course at a time.
-        </h2>
-        <p className="text-[0.97rem] text-muted leading-relaxed">Professional certifications and academic achievements earned along the way.</p>
-      </div>
+      <header className="ref-heading"><span aria-hidden="true">RECOGNITION</span><h2>/CERTIFICATES</h2></header>
+      <p className="ref-certificates-intro">Professional certifications, learning and achievements.</p>
+      {loadError && <p className="ref-certificate-notice" role="status">Saved certificates are shown. Additional uploaded certificates could not load. <button onClick={() => void fetchCertificates()}>Retry</button></p>}
 
       {/* Upload toggle - admin only */}
       {isAdmin && (
@@ -285,17 +279,17 @@ const Certificates = () => {
 
       {/* Certificates grid */}
       {certificates.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certificates.map((cert, i) => (
+        <div className="ref-certificate-grid">
+          {certificates.map((cert) => (
             <div key={cert.id}
-              className="group bg-background border border-border rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)] hover:border-transparent reveal-el opacity-0 translate-y-5"
-              style={{ transitionDelay: `${i * 0.07}s`, transitionDuration: '650ms', animationFillMode: 'forwards' }}>
-              <div className="relative cursor-pointer" onClick={() => setViewImage(cert.image_url)}>
-                <img src={cert.image_url} alt={cert.title} className="w-full h-48 object-cover" loading="lazy" />
+              className="ref-certificate-card group"
+              >
+              <button type="button" className="ref-certificate-preview" aria-label={`View ${cert.title}`} onClick={() => setViewImage(cert.image_url)}>
+                <img src={cert.image_url} alt={cert.title} className="ref-certificate-image" loading="lazy" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
                   <Award size={32} className="text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </div>
+              </button>
               <div className="p-5">
                 <h3 className="text-[0.95rem] font-bold text-foreground mb-1">{cert.title}</h3>
                 {cert.issuer && (
@@ -331,17 +325,13 @@ const Certificates = () => {
         </div>
       )}
 
-      {/* Lightbox */}
-      {viewImage && (
-        <div className="fixed inset-0 z-[300] bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-8" onClick={() => setViewImage(null)}>
-          <div className="relative max-w-4xl max-h-[90vh]">
-            <img src={viewImage} alt="Certificate" className="max-w-full max-h-[85vh] object-contain rounded-xl" />
-            <button onClick={() => setViewImage(null)} className="absolute -top-3 -right-3 bg-primary-foreground text-foreground w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
-              <X size={16} />
-            </button>
-          </div>
-        </div>
-      )}
+      <Dialog open={!!viewImage} onOpenChange={open => { if (!open) setViewImage(null); }}>
+        <DialogContent className="ref-certificate-dialog">
+          <DialogTitle className="sr-only">Certificate preview</DialogTitle>
+          {viewImage && <img src={viewImage} alt="Full certificate preview" />}
+        </DialogContent>
+      </Dialog>
+
       </div>
     </section>
   );
