@@ -1,0 +1,25 @@
+/* Reuses the exact existing portrait footprint: only the pictures transition. */
+.hero-portrait-slideshow{isolation:isolate}
+.hero-portrait-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;transform:translateX(16px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1);pointer-events:none;filter:grayscale(1)}
+.hero-portrait-slide.is-active{opacity:1;transform:translateX(0)}
+.hero-portrait-controls{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:0;padding:2px 7px;border-radius:24px;background:#ffffffd9;border:1px solid #ddd;backdrop-filter:blur(8px);opacity:0;transition:opacity .2s}
+.hero-portrait-slideshow:hover .hero-portrait-controls,.hero-portrait-slideshow:focus-within .hero-portrait-controls{opacity:1}
+.hero-portrait-dot,.hero-portrait-pause{display:grid;place-items:center;width:26px;height:32px;flex-shrink:0;background:none;border:0;cursor:pointer;color:#252525;padding:0}
+.hero-portrait-dot>span{display:block;width:5px;height:5px;border-radius:50%;background:#bbb;transition:background .25s,scale .25s}
+.hero-portrait-dot[aria-pressed=true]>span{background:#252525;scale:1.3}
+.hero-portrait-pause{border-left:1px solid #ddd;margin-left:3px;width:30px}
+.hero-portrait-controls button:focus-visible{outline:2px solid #252525;outline-offset:1px;border-radius:6px}
+@media(hover:none),(pointer:coarse){.hero-portrait-controls{opacity:1;bottom:8px;padding:0 3px}.hero-portrait-dot,.hero-portrait-pause{width:32px;height:40px}}
+@media(prefers-reduced-motion:reduce){.hero-portrait-slide,.hero-portrait-controls{transition:none!important}.hero-portrait-slide{transform:none}}
+.hero-portrait-slideshow{overflow:clip}
+.hero-portrait-slide{transform-origin:center top;transform:translateX(16px) scale(var(--portrait-scale,1))}
+.hero-portrait-slide.is-active{transform:translateX(0) scale(var(--portrait-scale,1))}
+.hero-portrait-slide:nth-child(2),.hero-portrait-slide:nth-child(3){--portrait-scale:1.05}
+.hero-portrait-slide:nth-child(4){--portrait-scale:.93}
+.hero-portrait-slide:nth-child(6){--portrait-scale:1.2}
+@media(prefers-reduced-motion:reduce){.hero-portrait-slide,.hero-portrait-slide.is-active{transform:scale(var(--portrait-scale,1))}}
+/* Match the visual head-and-shoulders size of the existing hero portrait. */
+.hero-portrait-slide:nth-child(2),.hero-portrait-slide:nth-child(3){--portrait-scale:1.35}
+.hero-portrait-slide:nth-child(4){--portrait-scale:1.2}
+.hero-portrait-slide:nth-child(5){--portrait-scale:1.3}
+.hero-portrait-slide:nth-child(6){--portrait-scale:1.6}
