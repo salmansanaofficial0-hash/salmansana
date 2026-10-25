@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import SiteMotion from "./components/SiteMotion";
 import ScrollManager from "./components/ScrollManager.tsx";
 import { SiteContentProvider } from "./lib/site-content";
 
@@ -25,6 +26,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollManager />
+        <SiteMotion />
         <Suspense fallback={<div className="grid min-h-screen place-items-center bg-background text-sm font-bold text-muted">Loading page...</div>}>
         <Routes>
           <Route path="/" element={<Index />} />
