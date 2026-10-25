@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound.tsx";
 import SiteMotion from "./components/SiteMotion";
 import ScrollManager from "./components/ScrollManager.tsx";
 import { SiteContentProvider } from "./lib/site-content";
+import "./styles/responsive.css";
 
 const queryClient = new QueryClient();
 const AboutPage = lazy(() => import("./pages/AboutPage.tsx"));
