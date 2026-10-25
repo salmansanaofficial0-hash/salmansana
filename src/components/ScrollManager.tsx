@@ -6,7 +6,7 @@ const ScrollManager = () => {
 
   useEffect(() => {
     if (hash) {
-      const id = window.setTimeout(() => document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" }), 50);
+      const id = window.setTimeout(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }), 50);
       return () => window.clearTimeout(id);
     }
     window.scrollTo({ top: 0, behavior: "auto" });
