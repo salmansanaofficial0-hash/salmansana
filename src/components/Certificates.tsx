@@ -12,9 +12,18 @@ interface Certificate {
   date_issued: string | null;
   image_url: string;
   pdf_url?: string;
+  description?: string;
 }
 
 const localCertificateExtras: Certificate[] = [
+  {
+    id: "uot-beli-ai-education-2026",
+    title: "Certificate of Appreciation — AI Education Session",
+    issuer: "BELI & Computer Science Department, University of Turbat",
+    date_issued: "2026-10-16",
+    image_url: "/certificates/uot-beli-ai-education-2026.webp",
+    description: "Received from Vice Chancellor Prof. Dr. Gul Hasan at the University of Turbat for the session ‘Exploring Artificial Intelligence – AI Education’. Theme: ‘If AI Can Do the Work, What Should Humans Learn?’",
+  },
   {
     id: "coursera-6ug02qrket4t",
     title: "Coursera Credential - 6UG02QRKET4T",
@@ -302,6 +311,7 @@ const Certificates = () => {
                     <Calendar size={12} /> {new Date(cert.date_issued).toLocaleDateString("en-US", { year: "numeric", month: "short" })}
                   </div>
                 )}
+                {cert.description && <p className="mt-3 text-sm leading-relaxed text-muted">{cert.description}</p>}
                 {cert.pdf_url && (
                   <a href={cert.pdf_url} target="_blank" rel="noreferrer"
                     className="mt-3 inline-flex items-center gap-1.5 text-[0.72rem] font-semibold text-blue-mid hover:text-foreground transition-colors">
