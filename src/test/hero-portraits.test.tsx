@@ -18,7 +18,7 @@ function setup(reduced = false) {
   const visibility = (visible: boolean) => act(() => callback([{ target, isIntersecting: visible } as IntersectionObserverEntry], {} as IntersectionObserver));
   visibility(true);
   const activeSource = () => result.container.querySelector(".is-active")?.getAttribute("src");
-  const advance = () => act(() => vi.advanceTimersByTime(5000));
+  const advance = () => act(() => vi.advanceTimersByTime(4000));
   return { ...result, visibility, activeSource, advance };
 }
 
@@ -45,7 +45,20 @@ describe("hero portrait slideshow", () => {
     expect(test.activeSource()).toBe(initial);
     fireEvent.click(screen.getByRole("button", { name: "Show portrait 2" }));
     expect(test.activeSource()).toBe("/portraits/salman-01.webp");
-    expect(screen.getByRole("button", { name: "Play portrait slideshow" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Play portrait slideshow" })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "Play portrait slideshow" }));
+    test.advance();
+    expect(test.activeSource()).toBe("/portraits/salman-02.webp");
+  });
+  it("continues autoplay after choosing a portrait and while the pointer or focus is on it", () => {
+    const test = setup();
+    const root = screen.getByRole("region", { name: "Salman Sana portrait slideshow" });
+    fireEvent.pointerEnter(root, { pointerType: "mouse" });
+    const dot = screen.getByRole("button", { name: "Show portrait 2" });
+    fireEvent.focus(dot);
+    fireEvent.click(dot);
+    test.advance();
+    expect(test.activeSource()).toBe("/portraits/salman-02.webp");
   });
   it("skips a failed image instead of showing an empty frame", () => {
     const test = setup();
